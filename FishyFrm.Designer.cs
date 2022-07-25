@@ -1,7 +1,7 @@
 ﻿
 namespace Fishy_Business
 {
-    partial class Form1
+    partial class FishyFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,33 @@ namespace Fishy_Business
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.FishyPanel = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // FishyPanel
+            // 
+            this.FishyPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.FishyPanel.Location = new System.Drawing.Point(0, 0);
+            this.FishyPanel.Name = "FishyPanel";
+            this.FishyPanel.Size = new System.Drawing.Size(684, 464);
+            this.FishyPanel.TabIndex = 0;
+            this.FishyPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.FishyPanel_Paint);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(684, 461);
+            this.Controls.Add(this.FishyPanel);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel FishyPanel;
     }
 }
 
