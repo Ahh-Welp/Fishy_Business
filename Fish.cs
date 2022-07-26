@@ -16,10 +16,10 @@ namespace Fishy_Business
         public Rectangle fishRec;//variable for a rectangle to place our image in
         public int score;
         //Create a constructor (initialises the values of the fields)
-        public Fish()
+        public Fish(int spacing)
         {
-            x = 10;
-            y = 10;
+            x = spacing;
+            y = spacing;
             width = 40;
             height = 40;
             //fishImage contains the mysteryfish.png image
@@ -30,9 +30,16 @@ namespace Fishy_Business
         // Methods for the Planet class
         public void DrawFish(Graphics g)
         {
+            fishRec = new Rectangle(x, y, width, height);
             g.DrawImage(fishImage, fishRec);
         }
 
+        public void MoveFish()
+        {
+            y += 5;
+            x += 5;
+            fishRec.Location = new Point(x, y);
+        }
 
 
     }
