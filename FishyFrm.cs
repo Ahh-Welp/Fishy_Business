@@ -15,19 +15,17 @@ namespace Fishy_Business
         Graphics g; //declare a graphics object called g
         // declare space for an array of 7 objects called planet 
         Fish[] fish = new Fish[3];
-
+        double x, y;
+        double phi = 0;
+        int radius = 50;
 
         public FishyFrm()
         {
             InitializeComponent();
-            for (int i = 0; i < 3; i++)
+               for (int i = 0; i < 3; i++)
             {
-                int x = 50 + (i * 75);
-                fish[i] = new Fish(x);
-                int y = 100 + (i * 75);
-                fish[i] = new Fish(y);
+                fish[i] = new Fish();
             }
-
         }
 
         private void FishyPanel_Paint(object sender, PaintEventArgs e)
@@ -37,8 +35,9 @@ namespace Fishy_Business
             //call the Fish class's DrawFish method to draw the image fish1 
             for (int i = 0; i < 3; i++)
             {
-                //call the Planet class's drawPlanet method to draw the images
-                fish[i].DrawFish(g);
+                fish[0].DrawFish(g, x, y);
+                fish[1].DrawFish(g, x - 20, y - 20);
+                fish[2].DrawFish(g, x + 20, y+ 20);
             }
 
 
@@ -46,10 +45,14 @@ namespace Fishy_Business
 
         private void TmrFish_Tick(object sender, EventArgs e)
         {
-            for (int i = 0; i < 3; i++)
-            {
-                fish[i].MoveFish();
-            }
+        
+           
+                int centre_x = 200, centre_y = 300;
+                phi += 0.01;
+
+                x = radius * Math.Cos(phi) + centre_x;
+                y = radius * Math.Sin(phi) + centre_y;
+     
             FishyPanel.Invalidate();//makes the paint event fire to redraw the panel
 
 

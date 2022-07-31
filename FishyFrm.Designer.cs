@@ -45,6 +45,8 @@ namespace Fishy_Business
             // 
             // TmrFish
             // 
+            this.TmrFish.Enabled = true;
+            this.TmrFish.Interval = 10;
             this.TmrFish.Tick += new System.EventHandler(this.TmrFish_Tick);
             // 
             // FishyFrm
