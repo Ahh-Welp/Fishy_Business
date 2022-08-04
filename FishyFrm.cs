@@ -13,18 +13,20 @@ namespace Fishy_Business
     public partial class FishyFrm : Form
     {
         Graphics g; //declare a graphics object called g
-        // declare space for an array of 7 objects called planet 
+        // declare space for an array of 3 objects called fish 
         Fish[] fish = new Fish[3];
         double x, y;
         double phi = 0;
-        int radius = 50;
+        int radius = 100;
 
         public FishyFrm()
         {
             InitializeComponent();
                for (int i = 0; i < 3; i++)
             {
-                fish[i] = new Fish();
+                int x = 10 + (i * 75);
+                fish[i] = new Fish(x);
+
             }
         }
 
@@ -35,9 +37,10 @@ namespace Fishy_Business
             //call the Fish class's DrawFish method to draw the image fish1 
             for (int i = 0; i < 3; i++)
             {
-                fish[0].DrawFish(g, x, y);
-                fish[1].DrawFish(g, x - 20, y - 20);
-                fish[2].DrawFish(g, x + 20, y+ 20);
+                
+                //fish[0].DrawFish(g, x, y);
+                //fish[1].DrawFish(g, x - 20, y - 20);
+                //fish[2].DrawFish(g, x + 20, y+ 20);
             }
 
 
@@ -46,14 +49,18 @@ namespace Fishy_Business
         private void TmrFish_Tick(object sender, EventArgs e)
         {
         
-           
-                int centre_x = 200, centre_y = 300;
-                phi += 0.01;
 
-                x = radius * Math.Cos(phi) + centre_x;
-                y = radius * Math.Sin(phi) + centre_y;
-     
-            FishyPanel.Invalidate();//makes the paint event fire to redraw the panel
+           
+                
+            for (int i = 0; i < 3; i++)
+            {
+                int centre_x = 300, centre_y = 300;
+                phi += 0.01;
+                fish[0].DrawFish(g, x = radius * Math.Cos(phi) + centre_x, y = radius * Math.Sin(phi) + centre_y);
+                fish[1].DrawFish(g, x = radius * Math.Cos(phi) + centre_x + 20, y = radius * Math.Sin(phi) + centre_y + 20);
+                fish[2].DrawFish(g, x = radius * Math.Cos(phi) + centre_x -20, y = radius * Math.Sin(phi) + centre_y - 20);
+            }
+                FishyPanel.Invalidate();//makes the paint event fire to redraw the panel
 
 
         }

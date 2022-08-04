@@ -17,9 +17,9 @@ namespace Fishy_Business
         public int score;
         //Create a constructor (initialises the values of the fields)
         //
-        public Fish()
+        public Fish(int spacing)
         {
-            x = 40;
+            x = spacing;
             y = 360;
             width = 40;
             height = 40;
@@ -31,7 +31,8 @@ namespace Fishy_Business
         // Methods for the Planet class
         public void DrawFish(Graphics g, double x1, double y1)
         {
-            x = (int) x1;
+
+            x = (int) x1; 
             y = (int) y1;
             fishRec.Location = new Point(x, y);
             g.DrawImage(fishImage, fishRec);
