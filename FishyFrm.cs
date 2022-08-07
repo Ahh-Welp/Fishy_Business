@@ -18,8 +18,9 @@ namespace Fishy_Business
         Fish[] fish = new Fish[3];
         double x, y;
         double phi = 0;
-        int radius = 100;
+        int radius = 80;
         int NumberOfFish;
+        private Rectangle rodRec;//variable for a rectangle to place our image in
 
         public FishyFrm()
         {
@@ -45,10 +46,17 @@ namespace Fishy_Business
 
             foreach (Fish f in fish)
             {
-                int centre_x = 300, centre_y = 300;
+                int centre_x = 200, centre_y = 300;
                 phi += 0.01;
                 f.DrawFish(g, x = radius * Math.Cos(phi + spacing) + centre_x, y = radius * Math.Sin(phi + spacing) + centre_y);
                 spacing = spacing + 2;
+            }
+            rodRec = new Rectangle(200, 220, 40, 40);
+            e.Graphics.FillRectangle(Brushes.Black, rodRec);
+
+            if(rodRec.IntersectsWith(fish[3].fishRec))
+            {
+
             }
         }
 
