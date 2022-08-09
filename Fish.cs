@@ -13,7 +13,7 @@ namespace Fishy_Business
         private int x, y, width, height;//variables for the rectangle
         private Image fishImage;//variable for the fish's image
 
-        private Rectangle fishRec;//variable for a rectangle to place our image in
+        public Rectangle fishRec;//variable for a rectangle to place our image in
         public int score;
         //Create a constructor (initialises the values of the fields)
         //
@@ -43,7 +43,5 @@ namespace Fishy_Business
             
 
         }
-
-
     }
 }

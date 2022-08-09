@@ -21,6 +21,7 @@ namespace Fishy_Business
         int radius = 80;
         int NumberOfFish;
         private Rectangle rodRec;//variable for a rectangle to place our image in
+        bool caught, Catch;
 
         public FishyFrm()
         {
@@ -51,18 +52,43 @@ namespace Fishy_Business
                 f.DrawFish(g, x = radius * Math.Cos(phi + spacing) + centre_x, y = radius * Math.Sin(phi + spacing) + centre_y);
                 spacing = spacing + 2;
             }
-            rodRec = new Rectangle(200, 220, 40, 40);
+            rodRec = new Rectangle(200, 220, 5, 5);
             e.Graphics.FillRectangle(Brushes.Black, rodRec);
 
-            if(rodRec.IntersectsWith(fish[3].fishRec))
+            foreach (Fish f_this in fish)
             {
-
+                if (rodRec.IntersectsWith(f_this.fishRec))
+                {
+                    TmrFish.Enabled = false;
+                    TmrCatch.Enabled = true;
+                    Catch = true;
+                }
             }
+
         }
+
 
         private void FishyFrm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void TmrCatch_Tick(object sender, EventArgs e)
+        {
+            TmrFish.Enabled = true;
+            Catch = false;
+        }
+
+        private void FishyFrm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Catch)
+            {
+                if (e.KeyData == Keys.Space)
+                {
+                    caught = true;
+                    MessageBox.Show("Caught!");
+                }
+            }
         }
 
         private void TmrFish_Tick(object sender, EventArgs e)
