@@ -39,6 +39,7 @@ namespace Fishy_Business
 
         private void FishyPanel_Paint(object sender, PaintEventArgs e)
         {
+            Random random = new Random();
             //get the graphics used to paint on the panel control
             g = e.Graphics;
             //call the Fish class's DrawFish method to draw the image fish1 
@@ -52,16 +53,23 @@ namespace Fishy_Business
                 f.DrawFish(g, x = radius * Math.Cos(phi + spacing) + centre_x, y = radius * Math.Sin(phi + spacing) + centre_y);
                 spacing = spacing + 2;
             }
-            rodRec = new Rectangle(200, 220, 5, 5);
+            rodRec = new Rectangle(200, 240, 5, 5);
             e.Graphics.FillRectangle(Brushes.Black, rodRec);
 
             foreach (Fish f_this in fish)
             {
-                if (rodRec.IntersectsWith(f_this.fishRec))
+                if (TmrWait.Enabled == false)
                 {
-                    TmrFish.Enabled = false;
-                    TmrCatch.Enabled = true;
-                    Catch = true;
+                    if (rodRec.IntersectsWith(f_this.fishRec))
+                    {
+
+                        if (random.Next(0, 100) <50)
+                        {
+                            TmrFish.Enabled = false;
+                            TmrCatch.Enabled = true;
+                            Catch = true;
+                        }
+                    }
                 }
             }
 
@@ -77,6 +85,13 @@ namespace Fishy_Business
         {
             TmrFish.Enabled = true;
             Catch = false;
+            TmrCatch.Enabled = false;
+            TmrWait.Enabled = true;
+        }
+
+        private void TmrWait_Tick(object sender, EventArgs e)
+        {
+            TmrWait.Enabled = false;
         }
 
         private void FishyFrm_KeyDown(object sender, KeyEventArgs e)

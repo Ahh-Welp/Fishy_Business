@@ -33,6 +33,7 @@ namespace Fishy_Business
             this.FishyPanel = new System.Windows.Forms.Panel();
             this.TmrFish = new System.Windows.Forms.Timer(this.components);
             this.TmrCatch = new System.Windows.Forms.Timer(this.components);
+            this.TmrWait = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // FishyPanel
@@ -52,8 +53,14 @@ namespace Fishy_Business
             // 
             // TmrCatch
             // 
-            this.TmrCatch.Interval = 10000;
+            this.TmrCatch.Interval = 1000;
             this.TmrCatch.Tick += new System.EventHandler(this.TmrCatch_Tick);
+            // 
+            // TmrWait
+            // 
+            this.TmrWait.Enabled = true;
+            this.TmrWait.Interval = 5000;
+            this.TmrWait.Tick += new System.EventHandler(this.TmrWait_Tick);
             // 
             // FishyFrm
             // 
@@ -74,6 +81,7 @@ namespace Fishy_Business
         private System.Windows.Forms.Panel FishyPanel;
         private System.Windows.Forms.Timer TmrFish;
         private System.Windows.Forms.Timer TmrCatch;
+        private System.Windows.Forms.Timer TmrWait;
     }
 }
 
