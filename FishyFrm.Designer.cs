@@ -69,7 +69,7 @@ namespace Fishy_Business
             this.ClientSize = new System.Drawing.Size(684, 461);
             this.Controls.Add(this.FishyPanel);
             this.Name = "FishyFrm";
-            this.Text = "Form1";
+            this.Text = "Going Fishin\'";
             this.Load += new System.EventHandler(this.FishyFrm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FishyFrm_KeyDown);
             this.ResumeLayout(false);

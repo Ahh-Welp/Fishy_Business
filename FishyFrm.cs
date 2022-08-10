@@ -21,7 +21,7 @@ namespace Fishy_Business
         int radius = 80;
         int NumberOfFish;
         private Rectangle rodRec;//variable for a rectangle to place our image in
-        bool caught, Catch;
+        bool caught, Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, morayeel, seaanemone;
 
         public FishyFrm()
         {
@@ -39,6 +39,74 @@ namespace Fishy_Business
 
         private void FishyPanel_Paint(object sender, PaintEventArgs e)
         {
+            if (spring)
+            {
+                if (redcod == true)
+                {
+                    if (bluecod == true)
+                    {
+                        if (snapper == true)
+                        {
+                            if (gurnard == true)
+                            {
+                                spring = false;
+                                summer = true;
+                            }
+                        }
+                    }
+                }
+            }
+            if (summer)
+            {
+                if (rockfish == true)
+                {
+                    if (bluetang == true)
+                    {
+                        if (squid == true)
+                        {
+                            if (yellowtang == true)
+                            {
+                                summer = false;
+                                autumn = true;
+                            }
+                        }
+                    }
+                }
+            }
+            if (autumn)
+            {
+                if (clownfish == true)
+                {
+                    if (catfish == true)
+                    {
+                        if (pinksalmon == true)
+                        {
+                            if (ringtailunicornfish == true)
+                            {
+                                autumn = false;
+                                winter = true;
+                            }
+                        }
+                    }
+                }
+            }
+            if (winter)
+            {
+                if (kingfish == true)
+                {
+                    if (pufferfish == true)
+                    {
+                        if (morayeel == true)
+                        {
+                            if (seaanemone == true)
+                            {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+
             Random random = new Random();
             //get the graphics used to paint on the panel control
             g = e.Graphics;
@@ -63,7 +131,7 @@ namespace Fishy_Business
                     if (rodRec.IntersectsWith(f_this.fishRec))
                     {
 
-                        if (random.Next(0, 100) <100)
+                        if (random.Next(0, 100) < 100)
                         {
                             TmrFish.Enabled = false;
                             TmrCatch.Enabled = true;
@@ -72,13 +140,17 @@ namespace Fishy_Business
                     }
                 }
             }
-
+            
+            
         }
 
 
         private void FishyFrm_Load(object sender, EventArgs e)
         {
-
+            spring = true;
+            summer = false;
+            autumn = false;
+            winter = false;
         }
 
         private void TmrCatch_Tick(object sender, EventArgs e)
@@ -101,23 +173,107 @@ namespace Fishy_Business
             {
                 if (e.KeyData == Keys.Space)
                 {
-                    int rand = random.Next(1, 5);
-                    if (rand == 1)
+                    if (spring)
                     {
-                        MessageBox.Show("Caught1!");
+                        int rand = random.Next(1, 5);
+                        if (rand == 1)
+                        {
+                            MessageBox.Show("Caught a red cod!");
+                            redcod = true;
+                        }
+                        if (rand == 2)
+                        {
+                            MessageBox.Show("Caught a blue cod!");
+                            bluecod = true;
+                        }
+                        if (rand == 3)
+                        {
+                            MessageBox.Show("Caught a snapper!");
+                            snapper = true;
+                        }
+                        if (rand == 4)
+                        {
+                            MessageBox.Show("Caught a gurnard!");
+                            gurnard = true;
+                        }
                     }
-                    if (rand == 2)
+
+                    if (summer)
                     {
-                        MessageBox.Show("Caught2!");
+                        int rand = random.Next(1, 5);
+                        if (rand == 1)
+                        {
+                            MessageBox.Show("Caught a rockfish!");
+                            rockfish = true;
+                        }
+                        if (rand == 2)
+                        {
+                            MessageBox.Show("Caught a blue tang!");
+                            bluetang = true;
+                        }
+                        if (rand == 3)
+                        {
+                            MessageBox.Show("Caught a squid!");
+                            squid = true;
+                        }
+                        if (rand == 4)
+                        {
+                            MessageBox.Show("Caught a yellow tang!");
+                            yellowtang = true;
+                        }
                     }
-                    if (rand == 3)
+
+                    if (autumn)
                     {
-                        MessageBox.Show("Caught3!");
+                        int rand = random.Next(1, 5);
+                        if (rand == 1)
+                        {
+                            MessageBox.Show("Caught a clownfish!");
+                            clownfish = true;
+                        }
+                        if (rand == 2)
+                        {
+                            MessageBox.Show("Caught a catfish!");
+                            catfish = true;
+                        }
+                        if (rand == 3)
+                        {
+                            MessageBox.Show("Caught a pink salmon!");
+                            pinksalmon = true;
+                        }
+                        if (rand == 4)
+                        {
+                            MessageBox.Show("Caught a ringtail unicornfish!");
+                            ringtailunicornfish = true;
+                        }
                     }
-                    if (rand == 4)
+
+                    if (winter)
                     {
-                        MessageBox.Show("Caught4!");
+                        int rand = random.Next(1, 5);
+                        if (rand == 1)
+                        {
+                            MessageBox.Show("Caught a kingfish!");
+                            kingfish = true;
+                        }
+                        if (rand == 2)
+                        {
+                            MessageBox.Show("Caught a pufferfish!");
+                            pufferfish = true;
+                        }
+                        if (rand == 3)
+                        {
+                            MessageBox.Show("Caught a morayeel!");
+                            morayeel = true;
+                        }
+                        if (rand == 4)
+                        {
+                            MessageBox.Show("Caught a sea anenome!");
+                            seaanemone = true;
+                        }
                     }
+
+
 
                 }
             }
