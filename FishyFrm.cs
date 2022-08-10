@@ -63,7 +63,7 @@ namespace Fishy_Business
                     if (rodRec.IntersectsWith(f_this.fishRec))
                     {
 
-                        if (random.Next(0, 100) <50)
+                        if (random.Next(0, 100) <100)
                         {
                             TmrFish.Enabled = false;
                             TmrCatch.Enabled = true;
@@ -96,12 +96,29 @@ namespace Fishy_Business
 
         private void FishyFrm_KeyDown(object sender, KeyEventArgs e)
         {
+            Random random = new Random();
             if (Catch)
             {
                 if (e.KeyData == Keys.Space)
                 {
-                    caught = true;
-                    MessageBox.Show("Caught!");
+                    int rand = random.Next(1, 5);
+                    if (rand == 1)
+                    {
+                        MessageBox.Show("Caught1!");
+                    }
+                    if (rand == 2)
+                    {
+                        MessageBox.Show("Caught2!");
+                    }
+                    if (rand == 3)
+                    {
+                        MessageBox.Show("Caught3!");
+                    }
+                    if (rand == 4)
+                    {
+                        MessageBox.Show("Caught4!");
+                    }
+
                 }
             }
         }
