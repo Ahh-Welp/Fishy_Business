@@ -14,7 +14,6 @@ namespace Fishy_Business
         private Image fishImage;//variable for the fish's image
 
         public Rectangle fishRec;//variable for a rectangle to place our image in
-        public int score;
         //Create a constructor (initialises the values of the fields)
         //
         public Fish(int spacing)
