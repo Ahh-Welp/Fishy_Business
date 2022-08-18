@@ -23,6 +23,9 @@ namespace Fishy_Business
         public int bait;
         private Rectangle rodRec;//variable for a rectangle to place our image in
         bool  Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, morayeel, seaanemone;
+        public string fishtype = null;
+        public Rectangle displayfishRec;
+        public Image displayfish;
 
         public void FishyFrm_KeyUp(object sender, KeyEventArgs e)
         {
@@ -36,8 +39,16 @@ namespace Fishy_Business
 
         public void FishyPopUp_Paint(object sender, PaintEventArgs e)
         {
-            
-            
+
+            displayfishRec = new Rectangle(0, 0, 40, 40);
+            displayfish = Properties.Resources.Snapper;
+
+
+            if (fishtype == "Snapper")
+            {
+                g.DrawImage(displayfish, displayfishRec);
+                FishyPopUp.Invalidate();
+            }
         }
 
         public FishyFrm()
@@ -211,13 +222,14 @@ namespace Fishy_Business
                             {
                                 MessageBox.Show("Caught a Red Cod!");
                                 redcod = true;
-                                FishyPopUp.Visible = true;
+                                //FishyPopUp.Visible = true;
                             }
                             if (rand == 2)
                             {
                                 MessageBox.Show("Caught a Blue Cod!");
                                 bluecod = true;
-                                FishyPopUp.Visible = true;
+                                //FishyPopUp.Visible = true;
+                                fishtype = "Bluecod";
 
                             }
                             if (rand == 3)
@@ -225,13 +237,14 @@ namespace Fishy_Business
                                 MessageBox.Show("Caught a Snapper!");
                                 snapper = true;
                                 FishyPopUp.Visible = true;
+                                fishtype = "Snapper";
 
-                            }
-                            if (rand == 4)
+                        }
+                        if (rand == 4)
                             {
                                 MessageBox.Show("Caught a Gurnard!");
                                 gurnard = true;
-                                FishyPopUp.Visible = true;
+                                //FishyPopUp.Visible = true;
 
                             }
                         }
