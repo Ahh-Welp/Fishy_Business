@@ -39,16 +39,21 @@ namespace Fishy_Business
 
         public void FishyPopUp_Paint(object sender, PaintEventArgs e)
         {
+            typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, FishyPopUp, new object[] { true });
 
-            displayfishRec = new Rectangle(0, 0, 40, 40);
-            displayfish = Properties.Resources.Snapper;
+            Graphics g2 = e.Graphics;
+
+            displayfishRec = new Rectangle(60, 60, 100, 100);
 
 
             if (fishtype == "Snapper")
-            {
-                g.DrawImage(displayfish, displayfishRec);
+            {          
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
                 FishyPopUp.Invalidate();
             }
+
+
         }
 
         public FishyFrm()
@@ -220,21 +225,20 @@ namespace Fishy_Business
                             int rand = random.Next(1, 5);
                             if (rand == 1)
                             {
-                                MessageBox.Show("Caught a Red Cod!");
                                 redcod = true;
-                                //FishyPopUp.Visible = true;
-                            }
-                            if (rand == 2)
+                                FishyPopUp.Visible = true;
+                                fishtype = "Redcod";
+
+                        }
+                        if (rand == 2)
                             {
-                                MessageBox.Show("Caught a Blue Cod!");
                                 bluecod = true;
-                                //FishyPopUp.Visible = true;
+                                FishyPopUp.Visible = true;
                                 fishtype = "Bluecod";
 
                             }
                             if (rand == 3)
                             {
-                                MessageBox.Show("Caught a Snapper!");
                                 snapper = true;
                                 FishyPopUp.Visible = true;
                                 fishtype = "Snapper";
@@ -242,36 +246,39 @@ namespace Fishy_Business
                         }
                         if (rand == 4)
                             {
-                                MessageBox.Show("Caught a Gurnard!");
                                 gurnard = true;
-                                //FishyPopUp.Visible = true;
-
-                            }
+                                FishyPopUp.Visible = true;
+                                fishtype = "Gurnard";
                         }
+                    }
 
                         if (summer)
                         {
                             int rand = random.Next(1, 5);
                             if (rand == 1)
                             {
-                                MessageBox.Show("Caught a Rockfish!");
                                 rockfish = true;
-                            }
+                                FishyPopUp.Visible = true;
+                                fishtype = "Rockfish";
+                        }
                             if (rand == 2)
                             {
-                                MessageBox.Show("Caught a Blue Tang!");
                                 bluetang = true;
-                            }
+                                FishyPopUp.Visible = true;
+                                fishtype = "Bluetang";
+                        }
                             if (rand == 3)
                             {
-                                MessageBox.Show("Caught a Squid!");
                                 squid = true;
-                            }
+                                FishyPopUp.Visible = true;
+                                fishtype = "Squid";
+                        }
                             if (rand == 4)
                             {
-                                MessageBox.Show("Caught a Yellow tang!");
                                 yellowtang = true;
-                            }
+                                FishyPopUp.Visible = true;
+                                fishtype = "Yellowtang";
+                        }
                         }
 
                         if (autumn)
@@ -279,24 +286,28 @@ namespace Fishy_Business
                             int rand = random.Next(1, 5);
                             if (rand == 1)
                             {
-                                MessageBox.Show("Caught a Clownfish!");
                                 clownfish = true;
-                            }
+                                FishyPopUp.Visible = true;
+                                fishtype = "Clownfish";
+                        }
                             if (rand == 2)
                             {
-                                MessageBox.Show("Caught a Catfish!");
                                 catfish = true;
-                            }
+                                FishyPopUp.Visible = true;
+                                fishtype = "Catfish";
+                        }
                             if (rand == 3)
                             {
-                                MessageBox.Show("Caught a Pink Salmon!");
                                 pinksalmon = true;
-                            }
+                                FishyPopUp.Visible = true;
+                                fishtype = "Pinksalmon";
+                        }
                             if (rand == 4)
                             {
-                                MessageBox.Show("Caught a Ringtail Unicornfish!");
                                 ringtailunicornfish = true;
-                            }
+                                FishyPopUp.Visible = true;
+                                fishtype = "Ringtailunicornfish";
+                        }
                         }
 
                         if (winter)
@@ -304,24 +315,28 @@ namespace Fishy_Business
                             int rand = random.Next(1, 5);
                             if (rand == 1)
                             {
-                                MessageBox.Show("Caught a Kingfish!");
                                 kingfish = true;
-                            }
+                                FishyPopUp.Visible = true;
+                                fishtype = "Kingfish";
+                        }
                             if (rand == 2)
                             {
-                                MessageBox.Show("Caught a Pufferfish!");
                                 pufferfish = true;
-                            }
+                                FishyPopUp.Visible = true;
+                                fishtype = "Pufferfish";
+                        }
                             if (rand == 3)
                             {
-                                MessageBox.Show("Caught a Morayeel!");
-                                morayeel = true;
-                            }
+                                morayeel = true; 
+                                FishyPopUp.Visible = true;
+                                fishtype = "Morayeel";
+                        }
                             if (rand == 4)
                             {
-                                MessageBox.Show("Caught a Sea Anenome!");
                                 seaanemone = true;
-                            }
+                                FishyPopUp.Visible = true;
+                                fishtype = "Seaanemone";
+                        }
                         }
                     
                 }
