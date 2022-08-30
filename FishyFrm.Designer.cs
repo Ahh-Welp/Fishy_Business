@@ -32,10 +32,12 @@ namespace Fishy_Business
             this.components = new System.ComponentModel.Container();
             this.FishyPanel = new System.Windows.Forms.Panel();
             this.FishyPopUp = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.TmrFish = new System.Windows.Forms.Timer(this.components);
             this.TmrCatch = new System.Windows.Forms.Timer(this.components);
             this.TmrWait = new System.Windows.Forms.Timer(this.components);
             this.FishyPanel.SuspendLayout();
+            this.FishyPopUp.SuspendLayout();
             this.SuspendLayout();
             // 
             // FishyPanel
@@ -51,12 +53,24 @@ namespace Fishy_Business
             // FishyPopUp
             // 
             this.FishyPopUp.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.FishyPopUp.Controls.Add(this.label1);
             this.FishyPopUp.Location = new System.Drawing.Point(100, 100);
             this.FishyPopUp.Name = "FishyPopUp";
             this.FishyPopUp.Size = new System.Drawing.Size(450, 250);
             this.FishyPopUp.TabIndex = 0;
             this.FishyPopUp.Visible = false;
             this.FishyPopUp.Paint += new System.Windows.Forms.PaintEventHandler(this.FishyPopUp_Paint);
+            this.FishyPopUp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FishyPopUp_MouseClick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(189, 192);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(138, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Click anywhere to continue.";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // TmrFish
             // 
@@ -88,6 +102,8 @@ namespace Fishy_Business
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FishyFrm_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FishyFrm_KeyUp);
             this.FishyPanel.ResumeLayout(false);
+            this.FishyPopUp.ResumeLayout(false);
+            this.FishyPopUp.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -99,6 +115,7 @@ namespace Fishy_Business
         private System.Windows.Forms.Timer TmrCatch;
         private System.Windows.Forms.Timer TmrWait;
         private System.Windows.Forms.Panel FishyPopUp;
+        private System.Windows.Forms.Label label1;
     }
 }
 
