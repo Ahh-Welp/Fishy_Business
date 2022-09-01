@@ -33,9 +33,10 @@ namespace Fishy_Business
         {
             FishyPopUp.Visible = false;
             TmrFish.Enabled = true;
+            displaytype = null;
         }
 
-        public string fishtype = null;
+        public string displaytype = null;
         public Rectangle displayfishRec;
         public Image displayfish;
 
@@ -57,13 +58,22 @@ namespace Fishy_Business
 
             displayfishRec = new Rectangle(60, 60, 100, 100);
 
-
-            if (fishtype == "Snapper")
-            {          
-                displayfish = Properties.Resources.Snapper;
-                g2.DrawImage(displayfish, displayfishRec);
+            if (displaytype == "Summer")
+            {
+                LblText.Visible = true;
+                LblText.Text = "It is now summer!";
                 FishyPopUp.Invalidate();
             }
+            if (displaytype == "Snapper")
+            {
+                LblText.Text = "You caught a snapper!";
+                displayfish = Properties.Resources.Snapper; 
+                g2.DrawImage(displayfish, displayfishRec);
+       
+                FishyPopUp.Invalidate();
+
+            }
+
 
 
         }
@@ -102,6 +112,7 @@ namespace Fishy_Business
                             {
                                 spring = false;
                                 summer = true;
+                                displaytype = "Summer";
                                 MessageBox.Show("Season has changed to summer!" + Environment.NewLine + "New fish are now available!" + Environment.NewLine + Environment.NewLine + "You have obtained the title, 'Novice Baiter'!");
                             }
                         }
@@ -120,6 +131,7 @@ namespace Fishy_Business
                             {
                                 summer = false;
                                 autumn = true;
+                                displaytype = "Autumn";
                                 MessageBox.Show("Season has changed to autumn!" + Environment.NewLine + "New fish are now available!" + Environment.NewLine + Environment.NewLine + "You have obtained the title, 'Amateur Baiter'!");
                             }
                         }
@@ -239,28 +251,28 @@ namespace Fishy_Business
                             {
                                 redcod = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Redcod";
+                                displaytype = "Redcod";
 
                         }
                         if (rand == 2)
                             {
                                 bluecod = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Bluecod";
+                                displaytype = "Bluecod";
 
                             }
                             if (rand == 3)
                             {
                                 snapper = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Snapper";
+                                displaytype = "Snapper";
 
                         }
                         if (rand == 4)
                             {
                                 gurnard = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Gurnard";
+                                displaytype = "Gurnard";
                         }
                     }
 
@@ -271,25 +283,25 @@ namespace Fishy_Business
                             {
                                 rockfish = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Rockfish";
+                                displaytype = "Rockfish";
                         }
                             if (rand == 2)
                             {
                                 bluetang = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Bluetang";
+                                displaytype = "Bluetang";
                         }
                             if (rand == 3)
                             {
                                 squid = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Squid";
+                                displaytype = "Squid";
                         }
                             if (rand == 4)
                             {
                                 yellowtang = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Yellowtang";
+                                displaytype = "Yellowtang";
                         }
                         }
 
@@ -300,25 +312,25 @@ namespace Fishy_Business
                             {
                                 clownfish = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Clownfish";
+                                displaytype = "Clownfish";
                         }
                             if (rand == 2)
                             {
                                 catfish = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Catfish";
+                                displaytype = "Catfish";
                         }
                             if (rand == 3)
                             {
                                 pinksalmon = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Pinksalmon";
+                                displaytype = "Pinksalmon";
                         }
                             if (rand == 4)
                             {
                                 ringtailunicornfish = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Ringtailunicornfish";
+                                displaytype = "Ringtailunicornfish";
                         }
                         }
 
@@ -329,25 +341,25 @@ namespace Fishy_Business
                             {
                                 kingfish = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Kingfish";
+                                displaytype = "Kingfish";
                         }
                             if (rand == 2)
                             {
                                 pufferfish = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Pufferfish";
+                                displaytype = "Pufferfish";
                         }
                             if (rand == 3)
                             {
                                 morayeel = true; 
                                 FishyPopUp.Visible = true;
-                                fishtype = "Morayeel";
+                                displaytype = "Morayeel";
                         }
                             if (rand == 4)
                             {
                                 seaanemone = true;
                                 FishyPopUp.Visible = true;
-                                fishtype = "Seaanemone";
+                                displaytype = "Seaanemone";
                         }
                         }
                     

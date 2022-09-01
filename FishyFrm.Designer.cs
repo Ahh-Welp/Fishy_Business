@@ -32,6 +32,7 @@ namespace Fishy_Business
             this.components = new System.ComponentModel.Container();
             this.FishyPanel = new System.Windows.Forms.Panel();
             this.FishyPopUp = new System.Windows.Forms.Panel();
+            this.LblText = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.TmrFish = new System.Windows.Forms.Timer(this.components);
             this.TmrCatch = new System.Windows.Forms.Timer(this.components);
@@ -52,7 +53,8 @@ namespace Fishy_Business
             // 
             // FishyPopUp
             // 
-            this.FishyPopUp.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.FishyPopUp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.FishyPopUp.Controls.Add(this.LblText);
             this.FishyPopUp.Controls.Add(this.label1);
             this.FishyPopUp.Location = new System.Drawing.Point(100, 100);
             this.FishyPopUp.Name = "FishyPopUp";
@@ -61,6 +63,15 @@ namespace Fishy_Business
             this.FishyPopUp.Visible = false;
             this.FishyPopUp.Paint += new System.Windows.Forms.PaintEventHandler(this.FishyPopUp_Paint);
             this.FishyPopUp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FishyPopUp_MouseClick);
+            // 
+            // LblText
+            // 
+            this.LblText.AutoSize = true;
+            this.LblText.Location = new System.Drawing.Point(189, 77);
+            this.LblText.Name = "LblText";
+            this.LblText.Size = new System.Drawing.Size(35, 13);
+            this.LblText.TabIndex = 1;
+            this.LblText.Text = "label2";
             // 
             // label1
             // 
@@ -116,6 +127,7 @@ namespace Fishy_Business
         private System.Windows.Forms.Timer TmrWait;
         private System.Windows.Forms.Panel FishyPopUp;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LblText;
     }
 }
 
