@@ -24,11 +24,6 @@ namespace Fishy_Business
         private Rectangle rodRec;//variable for a rectangle to place our image in
         bool  Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, morayeel, seaanemone;
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void FishyPopUp_MouseClick(object sender, MouseEventArgs e)
         {
             FishyPopUp.Visible = false;
@@ -66,14 +61,36 @@ namespace Fishy_Business
             }
             if (displaytype == "Snapper")
             {
+                LblText.Visible = true;
                 LblText.Text = "You caught a snapper!";
                 displayfish = Properties.Resources.Snapper; 
                 g2.DrawImage(displayfish, displayfishRec);
-       
                 FishyPopUp.Invalidate();
-
             }
-
+            if (displaytype == "Redcod")
+            {
+                LblText.Visible = true;
+                LblText.Text = "You caught a red cod!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                FishyPopUp.Invalidate();
+            }
+            if (displaytype == "Bluecod")
+            {
+                LblText.Visible = true;
+                LblText.Text = "You caught a blue cod!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                FishyPopUp.Invalidate();
+            }
+            if (displaytype == "Gurnard")
+            {
+                LblText.Visible = true;
+                LblText.Text = "You caught a gurnard!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                FishyPopUp.Invalidate();
+            }
 
 
         }
@@ -97,6 +114,8 @@ namespace Fishy_Business
             if (FishyPopUp.Visible == true)
             {
                 TmrFish.Enabled = false;
+                LblText.Visible = true;
+                label1.Visible = true;
             }
 
 
@@ -113,6 +132,7 @@ namespace Fishy_Business
                                 spring = false;
                                 summer = true;
                                 displaytype = "Summer";
+                                FishyPopUp.Visible = true;
                                 MessageBox.Show("Season has changed to summer!" + Environment.NewLine + "New fish are now available!" + Environment.NewLine + Environment.NewLine + "You have obtained the title, 'Novice Baiter'!");
                             }
                         }
