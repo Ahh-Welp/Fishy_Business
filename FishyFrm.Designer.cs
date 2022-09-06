@@ -32,6 +32,7 @@ namespace Fishy_Business
             this.components = new System.ComponentModel.Container();
             this.FishyPanel = new System.Windows.Forms.Panel();
             this.FishyPopUp = new System.Windows.Forms.Panel();
+            this.LblNew = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.LblText = new System.Windows.Forms.Label();
             this.TmrFish = new System.Windows.Forms.Timer(this.components);
@@ -54,6 +55,7 @@ namespace Fishy_Business
             // FishyPopUp
             // 
             this.FishyPopUp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.FishyPopUp.Controls.Add(this.LblNew);
             this.FishyPopUp.Controls.Add(this.label1);
             this.FishyPopUp.Controls.Add(this.LblText);
             this.FishyPopUp.Location = new System.Drawing.Point(100, 100);
@@ -64,10 +66,22 @@ namespace Fishy_Business
             this.FishyPopUp.Paint += new System.Windows.Forms.PaintEventHandler(this.FishyPopUp_Paint);
             this.FishyPopUp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FishyPopUp_MouseClick);
             // 
+            // LblNew
+            // 
+            this.LblNew.AutoSize = true;
+            this.LblNew.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.LblNew.Location = new System.Drawing.Point(179, 166);
+            this.LblNew.Name = "LblNew";
+            this.LblNew.Size = new System.Drawing.Size(242, 13);
+            this.LblNew.TabIndex = 2;
+            this.LblNew.Text = "This is the first time you\'ve caught this type of fish!";
+            this.LblNew.Visible = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(189, 192);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(179, 190);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(138, 13);
             this.label1.TabIndex = 0;
@@ -77,7 +91,7 @@ namespace Fishy_Business
             // 
             this.LblText.AutoSize = true;
             this.LblText.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.LblText.Location = new System.Drawing.Point(189, 77);
+            this.LblText.Location = new System.Drawing.Point(179, 76);
             this.LblText.Name = "LblText";
             this.LblText.Size = new System.Drawing.Size(35, 13);
             this.LblText.TabIndex = 1;
@@ -128,6 +142,7 @@ namespace Fishy_Business
         public System.Windows.Forms.Panel FishyPopUp;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label LblText;
+        public System.Windows.Forms.Label LblNew;
     }
 }
 
