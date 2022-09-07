@@ -39,10 +39,21 @@ namespace Fishy_Business
             {
                 displaytype = "Summer";
                 FishyPopUp.Visible = true;
+                
             }
             if (rockfish && bluetang && squid && yellowtang && summer)
             {
                 displaytype = "Autumn";
+                FishyPopUp.Visible = true;
+            }
+            if (clownfish && catfish && pinksalmon && ringtailunicornfish && autumn)
+            {
+                displaytype = "Winter";
+                FishyPopUp.Visible = true;
+            }
+            if (kingfish && pufferfish && morayeel && seaanemone && winter)
+            {
+                displaytype = "Success";
                 FishyPopUp.Visible = true;
             }
         }
@@ -195,11 +206,13 @@ namespace Fishy_Business
 
             foreach (Fish f in fish)
             {
+                //creating the circle for the fish
                 int centre_x = 200, centre_y = 300;
                 phi += 0.01;
                 f.DrawFish(g, x = radius * Math.Cos(phi + spacing) + centre_x, y = radius * Math.Sin(phi + spacing) + centre_y);
                 spacing = spacing + 2;
             }
+
             rodRec = new Rectangle(200, 240, 5, 5);
             e.Graphics.FillRectangle(Brushes.Black, rodRec);
 
@@ -222,7 +235,6 @@ namespace Fishy_Business
             
             
         }
-
 
         public void FishyFrm_Load(object sender, EventArgs e)
         {

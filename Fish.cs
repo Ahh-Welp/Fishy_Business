@@ -27,10 +27,10 @@ namespace Fishy_Business
             fishRec = new Rectangle(x, y, width, height);
         }
 
-        // Methods for the Planet class
+        // Methods for the Fish class
         public void DrawFish(Graphics g, double x1, double y1)
         {
-
+            // creating new locations for the fish to be drawn
             x = (int) x1; 
             y = (int) y1;
             fishRec.Location = new Point(x, y);
