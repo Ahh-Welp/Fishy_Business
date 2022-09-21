@@ -39,22 +39,29 @@ namespace Fishy_Business
             {
                 displaytype = "Summer";
                 FishyPopUp.Visible = true;
+                spring = false;
+                summer = true;
                 
             }
             if (rockfish && bluetang && squid && yellowtang && summer)
             {
                 displaytype = "Autumn";
                 FishyPopUp.Visible = true;
+                summer = false;
+                autumn = true;
             }
             if (clownfish && catfish && pinksalmon && ringtailunicornfish && autumn)
             {
                 displaytype = "Winter";
                 FishyPopUp.Visible = true;
+                autumn = false;
+                winter = true;
             }
             if (kingfish && pufferfish && morayeel && seaanemone && winter)
             {
                 displaytype = "Success";
                 FishyPopUp.Visible = true;
+                winter = false;
             }
         }
         public string displaytype = null;
@@ -79,10 +86,7 @@ namespace Fishy_Business
 
             displayfishRec = new Rectangle(60, 60, 100, 100);
 
-            if (displaytype == "Summer")
-            {
-                LblText.Text = "It is now summer!";
-            }
+            
             if (displaytype == "Snapper")
             {
                 if (snapper == false) { LblNew.Visible = true; }
@@ -115,7 +119,42 @@ namespace Fishy_Business
                 g2.DrawImage(displayfish, displayfishRec);
                 gurnard = true;
             }
-
+            if (displaytype == "Summer")
+            {
+                LblText.Text = "It is now summer!";
+            }
+            if (displaytype == "Snapper")
+            {
+                if (snapper == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a snapper!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                snapper = true;
+            }
+            if (displaytype == "Redcod")
+            {
+                if (redcod == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a red cod!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                redcod = true;
+            }
+            if (displaytype == "Bluecod")
+            {
+                if (bluecod == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a blue cod!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                bluecod = true;
+            }
+            if (displaytype == "Gurnard")
+            {
+                if (gurnard == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a gurnard!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                gurnard = true;
+            }
 
         }
 
@@ -143,54 +182,54 @@ namespace Fishy_Business
             }
 
             
-            if (summer)
+            //if (summer)
             {
-                if (rockfish == true)
+                //if (rockfish == true)
                 {
-                    if (bluetang == true)
+                    //if (bluetang == true)
                     {
-                        if (squid == true)
+                        //if (squid == true)
                         {
-                            if (yellowtang == true)
+                            //if (yellowtang == true)
                             {
-                                summer = false;
-                                autumn = true;
-                                displaytype = "Autumn";
-                                MessageBox.Show("Season has changed to autumn!" + Environment.NewLine + "New fish are now available!" + Environment.NewLine + Environment.NewLine + "You have obtained the title, 'Amateur Baiter'!");
+                                //summer = false;
+                                //autumn = true;
+                                //displaytype = "Autumn";
+                                //MessageBox.Show("Season has changed to autumn!" + Environment.NewLine + "New fish are now available!" + Environment.NewLine + Environment.NewLine + "You have obtained the title, 'Amateur Baiter'!");
                             }
                         }
                     }
                 }
             }
-            if (autumn)
+            //if (autumn)
             {
-                if (clownfish == true)
+               // if (clownfish == true)
                 {
-                    if (catfish == true)
+                   // if (catfish == true)
                     {
-                        if (pinksalmon == true)
+                      //  if (pinksalmon == true)
                         {
-                            if (ringtailunicornfish == true)
+                          //  if (ringtailunicornfish == true)
                             {
-                                autumn = false;
-                                winter = true;
-                                MessageBox.Show("Season has changed to winter!" + Environment.NewLine + "New fish are now available!" + Environment.NewLine + Environment.NewLine + "You have obtained the title, 'Skilled Baiter'!");
+                                //autumn = false;
+                                //winter = true;
+                                //MessageBox.Show("Season has changed to winter!" + Environment.NewLine + "New fish are now available!" + Environment.NewLine + Environment.NewLine + "You have obtained the title, 'Skilled Baiter'!");
                             }
                         }
                     }
                 }
             }
-            if (winter)
+            //if (winter)
             {
-                if (kingfish == true)
+                //if (kingfish == true)
                 {
-                    if (pufferfish == true)
+                    //if (pufferfish == true)
                     {
-                        if (morayeel == true)
+                       // if (morayeel == true)
                         {
-                            if (seaanemone == true)
+                           // if (seaanemone == true)
                             {
-                                MessageBox.Show("Congratulations!" + Environment.NewLine + "You have obtained all of the fish available." + Environment.NewLine + Environment.NewLine + "You have obtained the title, 'Master Baiter'!");
+                           //     MessageBox.Show("Congratulations!" + Environment.NewLine + "You have obtained all of the fish available." + Environment.NewLine + Environment.NewLine + "You have obtained the title, 'Master Baiter'!");
                             }
                         }
                     }
