@@ -50,6 +50,7 @@ namespace Fishy_Business
             this.FishyPanel.Name = "FishyPanel";
             this.FishyPanel.Size = new System.Drawing.Size(684, 464);
             this.FishyPanel.TabIndex = 0;
+            this.FishyPanel.Click += new System.EventHandler(this.GeneralClick);
             this.FishyPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.FishyPanel_Paint);
             // 
             // FishyPopUp
@@ -64,7 +65,6 @@ namespace Fishy_Business
             this.FishyPopUp.TabIndex = 0;
             this.FishyPopUp.Visible = false;
             this.FishyPopUp.Paint += new System.Windows.Forms.PaintEventHandler(this.FishyPopUp_Paint);
-            this.FishyPopUp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FishyPopUp_MouseClick);
             // 
             // LblNew
             // 
@@ -76,6 +76,7 @@ namespace Fishy_Business
             this.LblNew.TabIndex = 2;
             this.LblNew.Text = "This is the first time you\'ve caught this type of fish!";
             this.LblNew.Visible = false;
+            this.LblNew.Click += new System.EventHandler(this.GeneralClick);
             // 
             // label1
             // 
@@ -86,6 +87,7 @@ namespace Fishy_Business
             this.label1.Size = new System.Drawing.Size(138, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Click anywhere to continue.";
+            this.label1.Click += new System.EventHandler(this.GeneralClick);
             // 
             // LblText
             // 
@@ -96,6 +98,7 @@ namespace Fishy_Business
             this.LblText.Size = new System.Drawing.Size(35, 13);
             this.LblText.TabIndex = 1;
             this.LblText.Text = "label2";
+            this.LblText.Click += new System.EventHandler(this.GeneralClick);
             // 
             // TmrFish
             // 
@@ -126,6 +129,7 @@ namespace Fishy_Business
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FishyFrm_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FishyFrm_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FishyFrm_KeyUp);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FishyFrm_MouseClick);
             this.FishyPanel.ResumeLayout(false);
             this.FishyPopUp.ResumeLayout(false);
             this.FishyPopUp.PerformLayout();

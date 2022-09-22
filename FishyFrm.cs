@@ -24,15 +24,19 @@ namespace Fishy_Business
         private Rectangle rodRec;//variable for a rectangle to place our image in
         bool Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, morayeel, seaanemone;
 
-
-        private void FishyPopUp_MouseClick(object sender, MouseEventArgs e)
+        private void GeneralClick(object sender, EventArgs e)
         {
-            FishyPopUp.Visible = false;
-            TmrFish.Enabled = true;
-            displaytype = null;
-            LblNew.Visible = false;
-            checkSeason();
+            if (FishyPopUp.Visible == true)
+            {
+                FishyPopUp.Visible = false;
+                TmrFish.Enabled = true;
+                displaytype = null;
+                LblNew.Visible = false;
+                checkSeason();
+            }
         }
+
+
         public void checkSeason()
         {
             if (redcod && bluecod && gurnard && snapper && spring)
