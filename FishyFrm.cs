@@ -335,14 +335,14 @@ namespace Fishy_Business
             rodRec = new Rectangle(200, 240, 5, 5);
             e.Graphics.FillRectangle(Brushes.Black, rodRec);
 
-            foreach (Fish f_this in fish)
+            foreach (Fish f_this in fish) // this stops the fish and ensures that the fish can be caught. 
             {
                 if (TmrWait.Enabled == false)
                 {
                     if (rodRec.IntersectsWith(f_this.fishRec))
                     {
 
-                        if (random.Next(0, 100) < 100)
+                        if (random.Next(0, 100) < 100) // random chance for the fish to be "caught" currently set at 100% for testing
                         {
                             TmrFish.Enabled = false;
                             TmrCatch.Enabled = true;
@@ -500,7 +500,7 @@ namespace Fishy_Business
                                 seaanemone = true;
                                 FishyPopUp.Visible = true;
                                 displaytype = "Seaanemone";
-                        }
+                            }
                         }
                     
                 }
