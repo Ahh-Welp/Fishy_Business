@@ -24,6 +24,7 @@ namespace Fishy_Business
         private Rectangle rodRec;//variable for a rectangle to place our image in
         bool Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, morayeel, seaanemone;
 
+
         private void GeneralClick(object sender, EventArgs e)
         {
             if (FishyPopUp.Visible == true)
@@ -127,39 +128,114 @@ namespace Fishy_Business
             {
                 LblText.Text = "It is now summer!";
             }
-            if (displaytype == "Snapper")
+            if (displaytype == "Rockfish")
             {
-                if (snapper == false) { LblNew.Visible = true; }
-                LblText.Text = "You caught a snapper!";
+                if (rockfish == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a rockfish!";
                 displayfish = Properties.Resources.Snapper;
                 g2.DrawImage(displayfish, displayfishRec);
-                snapper = true;
+                rockfish = true;
             }
-            if (displaytype == "Redcod")
+            if (displaytype == "Bluetang")
             {
-                if (redcod == false) { LblNew.Visible = true; }
-                LblText.Text = "You caught a red cod!";
+                if (bluetang == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a blue tang!";
                 displayfish = Properties.Resources.Snapper;
                 g2.DrawImage(displayfish, displayfishRec);
-                redcod = true;
+                bluetang = true;
             }
-            if (displaytype == "Bluecod")
+            if (displaytype == "Squid")
             {
-                if (bluecod == false) { LblNew.Visible = true; }
-                LblText.Text = "You caught a blue cod!";
+                if (squid == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a squid!";
                 displayfish = Properties.Resources.Snapper;
                 g2.DrawImage(displayfish, displayfishRec);
-                bluecod = true;
+                squid = true;
             }
-            if (displaytype == "Gurnard")
+            if (displaytype == "Yellowtang")
             {
-                if (gurnard == false) { LblNew.Visible = true; }
-                LblText.Text = "You caught a gurnard!";
+                if (yellowtang == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a yellow tang!";
                 displayfish = Properties.Resources.Snapper;
                 g2.DrawImage(displayfish, displayfishRec);
-                gurnard = true;
+                yellowtang = true;
             }
-
+            if (displaytype == "Autumn")
+            {
+                LblText.Text = "It is now Autumn!";
+            }
+            if (displaytype == "Clownfish")
+            {
+                if (clownfish == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a clownfish!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                clownfish = true;
+            }
+            if (displaytype == "Catfish")
+            {
+                if (catfish == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a catfish!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                catfish = true;
+            }
+            if (displaytype == "Pinksalmon")
+            {
+                if (pinksalmon == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a pink salmon!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                pinksalmon = true;
+            }
+            if (displaytype == "Ringtailunicornfish")
+            {
+                if (ringtailunicornfish == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a ringtail unicornfish!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                ringtailunicornfish = true;
+            }
+            if (displaytype == "Winter")
+            {
+                LblText.Text = "It is now Winter!";
+            }
+            if (displaytype == "Kingfish")
+            {
+                if (kingfish == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a kingfish!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                kingfish = true;
+            }
+            if (displaytype == "Pufferfish")
+            {
+                if (pufferfish == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a pufferfish!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                pufferfish = true;
+            }
+            if (displaytype == "Morayeel")
+            {
+                if (morayeel == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a moray eel!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                morayeel = true;
+            }
+            if (displaytype == "Seaanemone")
+            {
+                if (seaanemone == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a sea anemone!";
+                displayfish = Properties.Resources.Snapper;
+                g2.DrawImage(displayfish, displayfishRec);
+                seaanemone = true;
+            }
+            if (displaytype == "Success")
+            {
+                LblText.Text = "You have caught all fish!";
+            }
         }
 
         public FishyFrm()

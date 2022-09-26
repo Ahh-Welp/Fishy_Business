@@ -64,6 +64,7 @@ namespace Fishy_Business
             this.FishyPopUp.Size = new System.Drawing.Size(450, 250);
             this.FishyPopUp.TabIndex = 0;
             this.FishyPopUp.Visible = false;
+            this.FishyPopUp.Click += new System.EventHandler(this.GeneralClick);
             this.FishyPopUp.Paint += new System.Windows.Forms.PaintEventHandler(this.FishyPopUp_Paint);
             // 
             // LblNew
@@ -129,7 +130,6 @@ namespace Fishy_Business
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FishyFrm_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FishyFrm_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FishyFrm_KeyUp);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FishyFrm_MouseClick);
             this.FishyPanel.ResumeLayout(false);
             this.FishyPopUp.ResumeLayout(false);
             this.FishyPopUp.PerformLayout();
