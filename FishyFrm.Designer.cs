@@ -109,13 +109,13 @@ namespace Fishy_Business
             // 
             // TmrCatch
             // 
-            this.TmrCatch.Interval = 1000;
+            this.TmrCatch.Interval = 3000;
             this.TmrCatch.Tick += new System.EventHandler(this.TmrCatch_Tick);
             // 
             // TmrWait
             // 
             this.TmrWait.Enabled = true;
-            this.TmrWait.Interval = 5000;
+            this.TmrWait.Interval = 2500;
             this.TmrWait.Tick += new System.EventHandler(this.TmrWait_Tick);
             // 
             // FishyFrm
@@ -128,8 +128,6 @@ namespace Fishy_Business
             this.Text = "Going Fishin\'";
             this.Load += new System.EventHandler(this.FishyFrm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FishyFrm_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FishyFrm_KeyPress);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FishyFrm_KeyUp);
             this.FishyPanel.ResumeLayout(false);
             this.FishyPopUp.ResumeLayout(false);
             this.FishyPopUp.PerformLayout();

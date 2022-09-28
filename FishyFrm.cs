@@ -22,7 +22,7 @@ namespace Fishy_Business
         int NumberOfFish;
         public int bait;
         private Rectangle rodRec;//variable for a rectangle to place our image in
-        bool Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, morayeel, seaanemone;
+        bool success, Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, morayeel, seaanemone;
 
 
         private void GeneralClick(object sender, EventArgs e)
@@ -33,6 +33,7 @@ namespace Fishy_Business
                 TmrFish.Enabled = true;
                 displaytype = null;
                 LblNew.Visible = false;
+                TmrWait.Enabled = true;
                 checkSeason();
             }
         }
@@ -46,7 +47,7 @@ namespace Fishy_Business
                 FishyPopUp.Visible = true;
                 spring = false;
                 summer = true;
-                
+                TmrCatch.Interval = 2500;
             }
             if (rockfish && bluetang && squid && yellowtang && summer)
             {
@@ -54,6 +55,7 @@ namespace Fishy_Business
                 FishyPopUp.Visible = true;
                 summer = false;
                 autumn = true;
+                TmrCatch.Interval = 2000;
             }
             if (clownfish && catfish && pinksalmon && ringtailunicornfish && autumn)
             {
@@ -61,27 +63,22 @@ namespace Fishy_Business
                 FishyPopUp.Visible = true;
                 autumn = false;
                 winter = true;
+                TmrCatch.Interval = 1000;
+
             }
             if (kingfish && pufferfish && morayeel && seaanemone && winter)
             {
                 displaytype = "Success";
                 FishyPopUp.Visible = true;
                 winter = false;
+                success = true;
+                spring = true;
             }
         }
         public string displaytype = null;
         public Rectangle displayfishRec;
         public Image displayfish;
 
-        public void FishyFrm_KeyUp(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        public void FishyFrm_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
 
         public void FishyPopUp_Paint(object sender, PaintEventArgs e)
         {
@@ -259,6 +256,7 @@ namespace Fishy_Business
                 TmrFish.Enabled = false;
                 LblText.Visible = true;
                 label1.Visible = true;
+                Catch = false;
             }
 
             
@@ -361,6 +359,7 @@ namespace Fishy_Business
             summer = false;
             autumn = false;
             winter = false;
+            success = false;
             bait = 0;
         }
 
