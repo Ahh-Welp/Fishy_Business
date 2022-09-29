@@ -257,6 +257,7 @@ namespace Fishy_Business
                 LblText.Visible = true;
                 label1.Visible = true;
                 Catch = false;
+                TmrCatch.Enabled = false;
             }
 
             
@@ -373,7 +374,10 @@ namespace Fishy_Business
 
         public void TmrWait_Tick(object sender, EventArgs e)
         {
-            TmrWait.Enabled = false;
+            if (FishyPopUp.Visible == false)
+            {
+                TmrWait.Enabled = false;
+            }
         }
 
         public void FishyFrm_KeyDown(object sender, KeyEventArgs e)

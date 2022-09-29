@@ -31,8 +31,8 @@ namespace Fishy_Business
         public void DrawFish(Graphics g, double x1, double y1)
         {
             // creating new locations for the fish to be drawn
-            x = (int) x1; 
-            y = (int) y1;
+            x = (int)x1;
+            y = (int)y1;
             fishRec.Location = new Point(x, y);
             g.DrawImage(fishImage, fishRec);
         }

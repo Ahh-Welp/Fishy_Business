@@ -137,7 +137,7 @@ namespace Fishy_Business
 
         #endregion
 
-        private System.Windows.Forms.Panel FishyPanel;
+        public System.Windows.Forms.Panel FishyPanel;
         private System.Windows.Forms.Timer TmrFish;
         private System.Windows.Forms.Timer TmrCatch;
         private System.Windows.Forms.Timer TmrWait;
