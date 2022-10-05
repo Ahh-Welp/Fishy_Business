@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,7 +22,14 @@ namespace Fishy_Business
         int radius = 80;
         int NumberOfFish;
         public int bait;
+        public string displaytype = null;
+        public Rectangle displayfishRec;
+        public Image displayfish;
         private Rectangle rodRec;//variable for a rectangle to place our image in
+        public Rectangle titleRec;
+        public Rectangle seasonRec;
+        public Image Title;
+        public Image Seasontitle;
         bool success, Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, morayeel, seaanemone;
 
 
@@ -33,6 +41,7 @@ namespace Fishy_Business
                 TmrFish.Enabled = true;
                 displaytype = null;
                 LblNew.Visible = false;
+                TmrWait.Enabled = false;
                 TmrWait.Enabled = true;
                 checkSeason();
             }
@@ -47,6 +56,7 @@ namespace Fishy_Business
                 FishyPopUp.Visible = true;
                 spring = false;
                 summer = true;
+                Seasontitle = Properties.Resources.Summer;
                 TmrCatch.Interval = 2500;
             }
             if (rockfish && bluetang && squid && yellowtang && summer)
@@ -55,6 +65,7 @@ namespace Fishy_Business
                 FishyPopUp.Visible = true;
                 summer = false;
                 autumn = true;
+                Seasontitle = Properties.Resources.Autumn;
                 TmrCatch.Interval = 2000;
             }
             if (clownfish && catfish && pinksalmon && ringtailunicornfish && autumn)
@@ -63,6 +74,7 @@ namespace Fishy_Business
                 FishyPopUp.Visible = true;
                 autumn = false;
                 winter = true;
+                Seasontitle = Properties.Resources.Winter;
                 TmrCatch.Interval = 1000;
 
             }
@@ -75,10 +87,6 @@ namespace Fishy_Business
                 spring = true;
             }
         }
-        public string displaytype = null;
-        public Rectangle displayfishRec;
-        public Image displayfish;
-
 
         public void FishyPopUp_Paint(object sender, PaintEventArgs e)
         {
@@ -259,8 +267,16 @@ namespace Fishy_Business
                 Catch = false;
                 TmrCatch.Enabled = false;
             }
+            Graphics g3 = e.Graphics; //graphics object
 
-            
+            //title and season title images
+            titleRec = new Rectangle(300, 50, 350, 100);
+            Title = Properties.Resources.Title;
+            g3.DrawImage(Title, titleRec);
+            seasonRec = new Rectangle(450, 150, 200, 50);
+            g3.DrawImage(Seasontitle, seasonRec);
+
+
             //if (summer)
             {
                 //if (rockfish == true)
@@ -361,6 +377,7 @@ namespace Fishy_Business
             autumn = false;
             winter = false;
             success = false;
+            Seasontitle = Properties.Resources.Spring;
             bait = 0;
         }
 

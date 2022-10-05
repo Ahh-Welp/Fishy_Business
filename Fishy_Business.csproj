@@ -87,5 +87,20 @@
   <ItemGroup>
     <None Include="Resources\Snapper.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Autumn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Spring.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Summer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Winter.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
