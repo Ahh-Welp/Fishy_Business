@@ -36,11 +36,5 @@ namespace Fishy_Business
             fishRec.Location = new Point(x, y);
             g.DrawImage(fishImage, fishRec);
         }
-
-        public void MoveFish()
-        {
-            
-
-        }
     }
 }

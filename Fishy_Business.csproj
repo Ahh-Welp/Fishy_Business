@@ -53,10 +53,19 @@
     <Compile Include="FishyFrm.Designer.cs">
       <DependentUpon>FishyFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStart.Designer.cs">
+      <DependentUpon>FrmStart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FishyFrm.resx">
       <DependentUpon>FishyFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStart.resx">
+      <DependentUpon>FrmStart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -101,6 +110,54 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Winter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blue cod.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blue tang.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Catfish.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clownfish.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gurnard.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jellyfish.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Kingfish.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pink Salmon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pufferfish.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Red cod.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ringtail Unicornfish.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rockfish.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Squid.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yellow Tang.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

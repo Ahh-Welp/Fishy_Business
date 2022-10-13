@@ -26,11 +26,11 @@ namespace Fishy_Business
         public Rectangle displayfishRec;
         public Image displayfish;
         private Rectangle rodRec;//variable for a rectangle to place our image in
-        public Rectangle titleRec;
+        private Rectangle titleRec;
         public Rectangle seasonRec;
         public Image Title;
         public Image Seasontitle;
-        bool success, Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, morayeel, seaanemone;
+        bool success, Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, morayeel, jellyfish;
 
 
         private void GeneralClick(object sender, EventArgs e)
@@ -78,7 +78,7 @@ namespace Fishy_Business
                 TmrCatch.Interval = 1000;
 
             }
-            if (kingfish && pufferfish && morayeel && seaanemone && winter)
+            if (kingfish && pufferfish && morayeel && jellyfish && winter)
             {
                 displaytype = "Success";
                 FishyPopUp.Visible = true;
@@ -109,7 +109,7 @@ namespace Fishy_Business
             {
                 if (redcod == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a red cod!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.Red_cod;
                 g2.DrawImage(displayfish, displayfishRec);
                 redcod = true;
             }
@@ -117,7 +117,7 @@ namespace Fishy_Business
             {
                 if (bluecod == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a blue cod!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.Blue_cod;
                 g2.DrawImage(displayfish, displayfishRec);
                 bluecod = true;
             }
@@ -125,7 +125,7 @@ namespace Fishy_Business
             {
                 if (gurnard == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a gurnard!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.Gurnard;
                 g2.DrawImage(displayfish, displayfishRec);
                 gurnard = true;
             }
@@ -229,17 +229,25 @@ namespace Fishy_Business
                 g2.DrawImage(displayfish, displayfishRec);
                 morayeel = true;
             }
-            if (displaytype == "Seaanemone")
+            if (displaytype == "Jellyfish")
             {
-                if (seaanemone == false) { LblNew.Visible = true; }
-                LblText.Text = "You caught a sea anemone!";
+                if (jellyfish == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught a jellyfish!";
                 displayfish = Properties.Resources.Snapper;
                 g2.DrawImage(displayfish, displayfishRec);
-                seaanemone = true;
+                jellyfish = true;
             }
             if (displaytype == "Success")
             {
                 LblText.Text = "You have caught all fish!";
+            }
+            if (displaytype == "Instructions")
+            {
+
+            }
+            if (displaytype == "Encyclopaedia")
+            {
+
             }
         }
 
@@ -377,6 +385,8 @@ namespace Fishy_Business
             autumn = false;
             winter = false;
             success = false;
+            displaytype = "instructions";
+            FishyPopUp.Visible = true;
             Seasontitle = Properties.Resources.Spring;
             bait = 0;
         }
@@ -517,9 +527,9 @@ namespace Fishy_Business
                         }
                             if (rand == 4)
                             {
-                                seaanemone = true;
+                                jellyfish = true;
                                 FishyPopUp.Visible = true;
-                                displaytype = "Seaanemone";
+                                displaytype = "Jellyfish";
                             }
                         }
                     
@@ -532,5 +542,13 @@ namespace Fishy_Business
         {
             FishyPanel.Invalidate();//makes the paint event fire to redraw the panel
         }
+        private void FishyFrm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count == 0)
+            {
+                Application.Exit();
+            }
+        }
     }
 }
+

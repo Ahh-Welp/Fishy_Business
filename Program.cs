@@ -16,7 +16,7 @@ namespace Fishy_Business
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FishyFrm());
+            new FrmStart().Show(); Application.Run();
         }
     }
 }

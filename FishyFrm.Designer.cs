@@ -56,6 +56,7 @@ namespace Fishy_Business
             // FishyPopUp
             // 
             this.FishyPopUp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.FishyPopUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.FishyPopUp.Controls.Add(this.LblNew);
             this.FishyPopUp.Controls.Add(this.label1);
             this.FishyPopUp.Controls.Add(this.LblText);
