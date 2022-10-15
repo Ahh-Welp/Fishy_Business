@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,9 +29,13 @@ namespace Fishy_Business
         private Rectangle rodRec;//variable for a rectangle to place our image in
         private Rectangle titleRec;
         public Rectangle seasonRec;
+        private Rectangle RecE1; //encyclopaedia box 1
+        private Rectangle RecE2; //encyclopaedia box 2
+        private Rectangle RecE3; //encyclopaedia box 3
+        private Rectangle RecE4; //encyclopaedia box 4
         public Image Title;
         public Image Seasontitle;
-        bool success, Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, morayeel, jellyfish;
+        bool success, Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, eel, jellyfish;
 
 
         private void GeneralClick(object sender, EventArgs e)
@@ -43,6 +48,8 @@ namespace Fishy_Business
                 LblNew.Visible = false;
                 TmrWait.Enabled = false;
                 TmrWait.Enabled = true;
+                LblText.Visible = true;
+                LblInfo.Visible = false;
                 checkSeason();
             }
         }
@@ -78,7 +85,7 @@ namespace Fishy_Business
                 TmrCatch.Interval = 1000;
 
             }
-            if (kingfish && pufferfish && morayeel && jellyfish && winter)
+            if (kingfish && pufferfish && eel && jellyfish && winter)
             {
                 displaytype = "Success";
                 FishyPopUp.Visible = true;
@@ -137,7 +144,7 @@ namespace Fishy_Business
             {
                 if (rockfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a rockfish!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.Rockfish;
                 g2.DrawImage(displayfish, displayfishRec);
                 rockfish = true;
             }
@@ -145,7 +152,7 @@ namespace Fishy_Business
             {
                 if (bluetang == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a blue tang!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.Blue_tang;
                 g2.DrawImage(displayfish, displayfishRec);
                 bluetang = true;
             }
@@ -153,7 +160,7 @@ namespace Fishy_Business
             {
                 if (squid == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a squid!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.Squid;
                 g2.DrawImage(displayfish, displayfishRec);
                 squid = true;
             }
@@ -161,7 +168,7 @@ namespace Fishy_Business
             {
                 if (yellowtang == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a yellow tang!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.Yellow_Tang;
                 g2.DrawImage(displayfish, displayfishRec);
                 yellowtang = true;
             }
@@ -173,7 +180,7 @@ namespace Fishy_Business
             {
                 if (clownfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a clownfish!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.Clownfish;
                 g2.DrawImage(displayfish, displayfishRec);
                 clownfish = true;
             }
@@ -181,7 +188,7 @@ namespace Fishy_Business
             {
                 if (catfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a catfish!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.Catfish;
                 g2.DrawImage(displayfish, displayfishRec);
                 catfish = true;
             }
@@ -189,7 +196,7 @@ namespace Fishy_Business
             {
                 if (pinksalmon == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a pink salmon!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.Pink_Salmon;
                 g2.DrawImage(displayfish, displayfishRec);
                 pinksalmon = true;
             }
@@ -197,7 +204,7 @@ namespace Fishy_Business
             {
                 if (ringtailunicornfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a ringtail unicornfish!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.Ringtail_Unicornfish;
                 g2.DrawImage(displayfish, displayfishRec);
                 ringtailunicornfish = true;
             }
@@ -209,7 +216,7 @@ namespace Fishy_Business
             {
                 if (kingfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a kingfish!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.Kingfish;
                 g2.DrawImage(displayfish, displayfishRec);
                 kingfish = true;
             }
@@ -217,23 +224,23 @@ namespace Fishy_Business
             {
                 if (pufferfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a pufferfish!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.Pufferfish;
                 g2.DrawImage(displayfish, displayfishRec);
                 pufferfish = true;
             }
-            if (displaytype == "Morayeel")
+            if (displaytype == "Eel")
             {
-                if (morayeel == false) { LblNew.Visible = true; }
-                LblText.Text = "You caught a moray eel!";
-                displayfish = Properties.Resources.Snapper;
+                if (eel == false) { LblNew.Visible = true; }
+                LblText.Text = "You caught an eel!";
+                displayfish = Properties.Resources.Eel;
                 g2.DrawImage(displayfish, displayfishRec);
-                morayeel = true;
+                eel = true;
             }
             if (displaytype == "Jellyfish")
             {
                 if (jellyfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a jellyfish!";
-                displayfish = Properties.Resources.Snapper;
+                displayfish = Properties.Resources.jellyfish;
                 g2.DrawImage(displayfish, displayfishRec);
                 jellyfish = true;
             }
@@ -241,13 +248,33 @@ namespace Fishy_Business
             {
                 LblText.Text = "You have caught all fish!";
             }
-            if (displaytype == "Instructions")
+            if (displaytype == "Information")
             {
-
+                LblInfo.Text = "Your aim is to become a master fisher and catch every single fish. Each" + Environment.NewLine + 
+                    "season has four different fish to catch, the season will change after you have" + Environment.NewLine + "caught all available fish. " +
+                    "Make sure to not run out of bait though! Duplicate fish" + Environment.NewLine + "can be used to create more bait."
+                    + Environment.NewLine + "" + Environment.NewLine + "You can view all fish you have caught in your encyclopedia by pressing E"
+                    + Environment.NewLine + "or clicking on the encyclopaedia button." + Environment.NewLine + "" + Environment.NewLine +
+                    "As you continue through the seasons, the fish will become more aware of your" + Environment.NewLine + "presence, and you'll have" +
+                    " less time to catch them. When you see a ( ! ), press the" + Environment.NewLine + "space bar to catch the fish." + Environment.NewLine +
+                    "" + Environment.NewLine + "You can view all this information again by pressing ( i ).";
+                ;
             }
-            if (displaytype == "Encyclopaedia")
+            if (displaytype == "Encyclopedia")
             {
+                RecE1 = new Rectangle (20, 20, 190, 90);
+                g2.FillRectangle(Brushes.Pink, RecE1);
+                
+                RecE2 = new Rectangle(240, 20, 190, 90);
+                g2.FillRectangle(Brushes.LightGreen, RecE2);
 
+                RecE3 = new Rectangle(20, 140, 190, 90);
+                g2.FillRectangle(Brushes.DarkOrange, RecE3);
+
+                RecE4 = new Rectangle(240, 140, 190, 90);
+                g2.FillRectangle(Brushes.LightBlue, RecE4);
+
+                
             }
         }
 
@@ -271,7 +298,7 @@ namespace Fishy_Business
             {
                 TmrFish.Enabled = false;
                 LblText.Visible = true;
-                label1.Visible = true;
+                LblContinue.Visible = true;
                 Catch = false;
                 TmrCatch.Enabled = false;
             }
@@ -283,61 +310,6 @@ namespace Fishy_Business
             g3.DrawImage(Title, titleRec);
             seasonRec = new Rectangle(450, 150, 200, 50);
             g3.DrawImage(Seasontitle, seasonRec);
-
-
-            //if (summer)
-            {
-                //if (rockfish == true)
-                {
-                    //if (bluetang == true)
-                    {
-                        //if (squid == true)
-                        {
-                            //if (yellowtang == true)
-                            {
-                                //summer = false;
-                                //autumn = true;
-                                //displaytype = "Autumn";
-                                //MessageBox.Show("Season has changed to autumn!" + Environment.NewLine + "New fish are now available!" + Environment.NewLine + Environment.NewLine + "You have obtained the title, 'Amateur Baiter'!");
-                            }
-                        }
-                    }
-                }
-            }
-            //if (autumn)
-            {
-               // if (clownfish == true)
-                {
-                   // if (catfish == true)
-                    {
-                      //  if (pinksalmon == true)
-                        {
-                          //  if (ringtailunicornfish == true)
-                            {
-                                //autumn = false;
-                                //winter = true;
-                                //MessageBox.Show("Season has changed to winter!" + Environment.NewLine + "New fish are now available!" + Environment.NewLine + Environment.NewLine + "You have obtained the title, 'Skilled Baiter'!");
-                            }
-                        }
-                    }
-                }
-            }
-            //if (winter)
-            {
-                //if (kingfish == true)
-                {
-                    //if (pufferfish == true)
-                    {
-                       // if (morayeel == true)
-                        {
-                           // if (seaanemone == true)
-                            {
-                           //     MessageBox.Show("Congratulations!" + Environment.NewLine + "You have obtained all of the fish available." + Environment.NewLine + Environment.NewLine + "You have obtained the title, 'Master Baiter'!");
-                            }
-                        }
-                    }
-                }
-            }
 
             Random random = new Random();
             //get the graphics used to paint on the panel control
@@ -385,8 +357,6 @@ namespace Fishy_Business
             autumn = false;
             winter = false;
             success = false;
-            displaytype = "instructions";
-            FishyPopUp.Visible = true;
             Seasontitle = Properties.Resources.Spring;
             bait = 0;
         }
@@ -410,8 +380,17 @@ namespace Fishy_Business
         public void FishyFrm_KeyDown(object sender, KeyEventArgs e)
         {
              Random random = new Random();
-
-                if (Catch)
+            if (e.KeyData == Keys.I)
+            {
+                displaytype = "Information";
+                FishyPopUp.Visible = true;
+            }
+            if (e.KeyData == Keys.E)
+            {
+                displaytype = "Encyclopedia"; 
+                FishyPopUp.Visible = true;
+            }
+            if (Catch)
                 {
                    
                     
@@ -521,9 +500,9 @@ namespace Fishy_Business
                         }
                             if (rand == 3)
                             {
-                                morayeel = true; 
+                                eel = true; 
                                 FishyPopUp.Visible = true;
-                                displaytype = "Morayeel";
+                                displaytype = "Eel";
                         }
                             if (rand == 4)
                             {

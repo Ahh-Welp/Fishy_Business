@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.PnlStart = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.Lbl2 = new System.Windows.Forms.Label();
+            this.Lbl1 = new System.Windows.Forms.Label();
+            this.TmrChange = new System.Windows.Forms.Timer(this.components);
             this.PnlStart.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,43 +41,41 @@
             this.PnlStart.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PnlStart.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.PnlStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PnlStart.Controls.Add(this.label3);
-            this.PnlStart.Controls.Add(this.label2);
-            this.PnlStart.Controls.Add(this.label1);
+            this.PnlStart.Controls.Add(this.Lbl2);
+            this.PnlStart.Controls.Add(this.Lbl1);
             this.PnlStart.ForeColor = System.Drawing.Color.Transparent;
             this.PnlStart.Location = new System.Drawing.Point(0, 0);
             this.PnlStart.Name = "PnlStart";
             this.PnlStart.Size = new System.Drawing.Size(685, 462);
             this.PnlStart.TabIndex = 0;
             this.PnlStart.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlStart_Paint);
-            this.PnlStart.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PnlStart_MouseClick);
+            this.PnlStart.MouseClick += new System.Windows.Forms.MouseEventHandler(this.General_MouseClick);
             // 
-            // label1
+            // Lbl2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(175, 145);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.Lbl2.AutoSize = true;
+            this.Lbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl2.Location = new System.Drawing.Point(213, 357);
+            this.Lbl2.Name = "Lbl2";
+            this.Lbl2.Size = new System.Drawing.Size(243, 20);
+            this.Lbl2.TabIndex = 2;
+            this.Lbl2.Text = "Click anywhere to start the game.";
+            this.Lbl2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.General_MouseClick);
             // 
-            // label2
+            // Lbl1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(175, 227);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
+            this.Lbl1.AutoSize = true;
+            this.Lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl1.Location = new System.Drawing.Point(21, 152);
+            this.Lbl1.Name = "Lbl1";
+            this.Lbl1.Size = new System.Drawing.Size(39, 20);
+            this.Lbl1.TabIndex = 0;
+            this.Lbl1.Text = "Lbl1";
+            this.Lbl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.General_MouseClick);
             // 
-            // label3
+            // TmrChange
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(175, 286);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "label3";
+            this.TmrChange.Tick += new System.EventHandler(this.TmrChange_Tick);
             // 
             // FrmStart
             // 
@@ -95,8 +94,8 @@
         #endregion
 
         private System.Windows.Forms.Panel PnlStart;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Lbl2;
+        private System.Windows.Forms.Label Lbl1;
+        private System.Windows.Forms.Timer TmrChange;
     }
 }

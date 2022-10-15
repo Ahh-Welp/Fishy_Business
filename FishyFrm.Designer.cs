@@ -33,11 +33,12 @@ namespace Fishy_Business
             this.FishyPanel = new System.Windows.Forms.Panel();
             this.FishyPopUp = new System.Windows.Forms.Panel();
             this.LblNew = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LblContinue = new System.Windows.Forms.Label();
             this.LblText = new System.Windows.Forms.Label();
             this.TmrFish = new System.Windows.Forms.Timer(this.components);
             this.TmrCatch = new System.Windows.Forms.Timer(this.components);
             this.TmrWait = new System.Windows.Forms.Timer(this.components);
+            this.LblInfo = new System.Windows.Forms.Label();
             this.FishyPanel.SuspendLayout();
             this.FishyPopUp.SuspendLayout();
             this.SuspendLayout();
@@ -57,8 +58,9 @@ namespace Fishy_Business
             // 
             this.FishyPopUp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.FishyPopUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.FishyPopUp.Controls.Add(this.LblInfo);
             this.FishyPopUp.Controls.Add(this.LblNew);
-            this.FishyPopUp.Controls.Add(this.label1);
+            this.FishyPopUp.Controls.Add(this.LblContinue);
             this.FishyPopUp.Controls.Add(this.LblText);
             this.FishyPopUp.Location = new System.Drawing.Point(100, 100);
             this.FishyPopUp.Name = "FishyPopUp";
@@ -71,7 +73,7 @@ namespace Fishy_Business
             // LblNew
             // 
             this.LblNew.AutoSize = true;
-            this.LblNew.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.LblNew.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.LblNew.Location = new System.Drawing.Point(179, 166);
             this.LblNew.Name = "LblNew";
             this.LblNew.Size = new System.Drawing.Size(242, 13);
@@ -80,26 +82,26 @@ namespace Fishy_Business
             this.LblNew.Visible = false;
             this.LblNew.Click += new System.EventHandler(this.GeneralClick);
             // 
-            // label1
+            // LblContinue
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(179, 190);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Click anywhere to continue.";
-            this.label1.Click += new System.EventHandler(this.GeneralClick);
+            this.LblContinue.AutoSize = true;
+            this.LblContinue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblContinue.Location = new System.Drawing.Point(179, 205);
+            this.LblContinue.Name = "LblContinue";
+            this.LblContinue.Size = new System.Drawing.Size(138, 13);
+            this.LblContinue.TabIndex = 0;
+            this.LblContinue.Text = "Click anywhere to continue.";
+            this.LblContinue.Click += new System.EventHandler(this.GeneralClick);
             // 
             // LblText
             // 
             this.LblText.AutoSize = true;
-            this.LblText.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.LblText.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.LblText.Location = new System.Drawing.Point(179, 76);
             this.LblText.Name = "LblText";
-            this.LblText.Size = new System.Drawing.Size(35, 13);
+            this.LblText.Size = new System.Drawing.Size(42, 13);
             this.LblText.TabIndex = 1;
-            this.LblText.Text = "label2";
+            this.LblText.Text = "LblText";
             this.LblText.Click += new System.EventHandler(this.GeneralClick);
             // 
             // TmrFish
@@ -118,6 +120,15 @@ namespace Fishy_Business
             this.TmrWait.Enabled = true;
             this.TmrWait.Interval = 2500;
             this.TmrWait.Tick += new System.EventHandler(this.TmrWait_Tick);
+            // 
+            // LblInfo
+            // 
+            this.LblInfo.AutoSize = true;
+            this.LblInfo.Location = new System.Drawing.Point(36, 27);
+            this.LblInfo.Name = "LblInfo";
+            this.LblInfo.Size = new System.Drawing.Size(39, 13);
+            this.LblInfo.TabIndex = 3;
+            this.LblInfo.Text = "LblInfo";
             // 
             // FishyFrm
             // 
@@ -143,9 +154,10 @@ namespace Fishy_Business
         private System.Windows.Forms.Timer TmrCatch;
         private System.Windows.Forms.Timer TmrWait;
         public System.Windows.Forms.Panel FishyPopUp;
-        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label LblContinue;
         public System.Windows.Forms.Label LblText;
         public System.Windows.Forms.Label LblNew;
+        private System.Windows.Forms.Label LblInfo;
     }
 }
 
