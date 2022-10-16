@@ -30,7 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.PnlStart = new System.Windows.Forms.Panel();
-            this.Lbl2 = new System.Windows.Forms.Label();
+            this.BtnStart = new System.Windows.Forms.Button();
+            this.TxtName = new System.Windows.Forms.TextBox();
             this.Lbl1 = new System.Windows.Forms.Label();
             this.TmrChange = new System.Windows.Forms.Timer(this.components);
             this.PnlStart.SuspendLayout();
@@ -41,7 +42,8 @@
             this.PnlStart.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PnlStart.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.PnlStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PnlStart.Controls.Add(this.Lbl2);
+            this.PnlStart.Controls.Add(this.BtnStart);
+            this.PnlStart.Controls.Add(this.TxtName);
             this.PnlStart.Controls.Add(this.Lbl1);
             this.PnlStart.ForeColor = System.Drawing.Color.Transparent;
             this.PnlStart.Location = new System.Drawing.Point(0, 0);
@@ -49,18 +51,25 @@
             this.PnlStart.Size = new System.Drawing.Size(685, 462);
             this.PnlStart.TabIndex = 0;
             this.PnlStart.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlStart_Paint);
-            this.PnlStart.MouseClick += new System.Windows.Forms.MouseEventHandler(this.General_MouseClick);
             // 
-            // Lbl2
+            // BtnStart
             // 
-            this.Lbl2.AutoSize = true;
-            this.Lbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl2.Location = new System.Drawing.Point(213, 357);
-            this.Lbl2.Name = "Lbl2";
-            this.Lbl2.Size = new System.Drawing.Size(243, 20);
-            this.Lbl2.TabIndex = 2;
-            this.Lbl2.Text = "Click anywhere to start the game.";
-            this.Lbl2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.General_MouseClick);
+            this.BtnStart.Location = new System.Drawing.Point(275, 360);
+            this.BtnStart.Name = "BtnStart";
+            this.BtnStart.Size = new System.Drawing.Size(120, 50);
+            this.BtnStart.TabIndex = 4;
+            this.BtnStart.Text = "Continue";
+            this.BtnStart.UseVisualStyleBackColor = true;
+            this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
+            // 
+            // TxtName
+            // 
+            this.TxtName.Location = new System.Drawing.Point(264, 334);
+            this.TxtName.Name = "TxtName";
+            this.TxtName.Size = new System.Drawing.Size(139, 20);
+            this.TxtName.TabIndex = 3;
+            this.TxtName.Visible = false;
+            this.TxtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtName_KeyPress);
             // 
             // Lbl1
             // 
@@ -71,7 +80,6 @@
             this.Lbl1.Size = new System.Drawing.Size(39, 20);
             this.Lbl1.TabIndex = 0;
             this.Lbl1.Text = "Lbl1";
-            this.Lbl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.General_MouseClick);
             // 
             // TmrChange
             // 
@@ -94,8 +102,9 @@
         #endregion
 
         private System.Windows.Forms.Panel PnlStart;
-        private System.Windows.Forms.Label Lbl2;
         private System.Windows.Forms.Label Lbl1;
         private System.Windows.Forms.Timer TmrChange;
+        private System.Windows.Forms.TextBox TxtName;
+        private System.Windows.Forms.Button BtnStart;
     }
 }

@@ -35,8 +35,89 @@ namespace Fishy_Business
         private Rectangle RecE4; //encyclopaedia box 4
         public Image Title;
         public Image Seasontitle;
+        public string PlayerName;
         bool success, Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, eel, jellyfish;
 
+        private void Ebutton2_Click(object sender, EventArgs e)
+        {
+            if (displaytype == "Encyclopedia")
+            {
+                displaytype = "ESummer";
+            }
+            if (displaytype == "ESpring")
+            {
+                if (bluecod)
+                {
+                    displaytype = "Bluecod";
+                    Ebutton1.Visible = false;
+                    Ebutton2.Visible = false;
+                    Ebutton3.Visible = false;
+                    Ebutton4.Visible = false;
+                    LblText.Visible = true;
+                    LblContinue.Visible = true;
+                }
+            }
+            if (displaytype == "ESummer")
+            {
+                if (bluetang)
+                {
+                    displaytype = "Bluetang";
+                    Ebutton1.Visible = false;
+                    Ebutton2.Visible = false;
+                    Ebutton3.Visible = false;
+                    Ebutton4.Visible = false;
+                    LblText.Visible = true;
+                    LblContinue.Visible = true;
+                }
+            }
+            if (displaytype == "EAutumn")
+            {
+                if (catfish)
+                {
+                    displaytype = "Catfish";
+                    Ebutton1.Visible = false;
+                    Ebutton2.Visible = false;
+                    Ebutton3.Visible = false;
+                    Ebutton4.Visible = false;
+                    LblText.Visible = true;
+                    LblContinue.Visible = true;
+                }
+            }
+            if (displaytype == "EWinter")
+            {
+                if (pufferfish)
+                {
+                    displaytype = "Pufferfish";
+                    Ebutton1.Visible = false;
+                    Ebutton2.Visible = false;
+                    Ebutton3.Visible = false;
+                    Ebutton4.Visible = false;
+                    LblText.Visible = true;
+                    LblContinue.Visible = true;
+                }
+            }
+        }
+
+        private void Ebutton1_Click(object sender, EventArgs e)
+        {
+            if (displaytype == "Encyclopedia")
+            {
+                displaytype = "ESpring";
+            }
+            if (displaytype == "ESpring")
+            {
+                if (redcod)
+                {
+                    displaytype = "Redcod";
+                    Ebutton1.Visible = false;
+                    Ebutton2.Visible = false;
+                    Ebutton3.Visible = false;
+                    Ebutton4.Visible = false;
+                    LblText.Visible = true;
+                    LblContinue.Visible = true;
+                }
+            }
+        }
 
         private void GeneralClick(object sender, EventArgs e)
         {
@@ -50,10 +131,16 @@ namespace Fishy_Business
                 TmrWait.Enabled = true;
                 LblText.Visible = true;
                 LblInfo.Visible = false;
+                Ebutton1.Visible = false;
+                Ebutton2.Visible = false;
+                Ebutton3.Visible = false;
+                Ebutton4.Visible = false;
+                LblText.Text = "";
+                LblContinue.Visible = true;
                 checkSeason();
             }
+            
         }
-
 
         public void checkSeason()
         {
@@ -250,6 +337,7 @@ namespace Fishy_Business
             }
             if (displaytype == "Information")
             {
+                LblInfo.Visible = true;
                 LblInfo.Text = "Your aim is to become a master fisher and catch every single fish. Each" + Environment.NewLine + 
                     "season has four different fish to catch, the season will change after you have" + Environment.NewLine + "caught all available fish. " +
                     "Make sure to not run out of bait though! Duplicate fish" + Environment.NewLine + "can be used to create more bait."
@@ -258,23 +346,112 @@ namespace Fishy_Business
                     "As you continue through the seasons, the fish will become more aware of your" + Environment.NewLine + "presence, and you'll have" +
                     " less time to catch them. When you see a ( ! ), press the" + Environment.NewLine + "space bar to catch the fish." + Environment.NewLine +
                     "" + Environment.NewLine + "You can view all this information again by pressing ( i ).";
-                ;
             }
             if (displaytype == "Encyclopedia")
             {
-                RecE1 = new Rectangle (20, 20, 190, 90);
+                Ebutton1.Visible = true;
+                Ebutton2.Visible = true;
+                Ebutton3.Visible = true;
+                Ebutton4.Visible = true;
+                LblText.Visible = false;
+                LblContinue.Visible = false;
+                LblInfo.Visible = false;
+                Ebutton1.Text = "Spring";
+                Ebutton2.Text = "Summer";
+                Ebutton3.Text = "Autumn";
+                Ebutton4.Text = "Winter";
+            }
+            if (displaytype == "ESpring")
+            {
+                if (redcod)
+                {
+                    Ebutton1.Text = "Red Cod";
+                }
+                else
+                {
+                    Ebutton1.Text = "???";
+                }
+                if (bluecod)
+                {
+                    Ebutton2.Text = "Blue Cod";
+                }
+                else
+                {
+                    Ebutton2.Text = "???";
+                }
+                if (snapper)
+                {
+                    Ebutton2.Text = "Snapper";
+                }
+                else
+                {
+                    Ebutton2.Text = "???";
+                }
+                if (gurnard)
+                {
+                    Ebutton2.Text = " Gurnard";
+                }
+                else
+                {
+                    Ebutton2.Text = "???";
+                }
+            }
+            if (displaytype == "ESummer")
+            {
+                if (redcod)
+                {
+                    Ebutton1.Text = "Rockfish";
+                }
+                else
+                {
+                    Ebutton1.Text = "???";
+                }
+                if (bluecod)
+                {
+                    Ebutton2.Text = "Blue Tang";
+                }
+                else
+                {
+                    Ebutton2.Text = "???";
+                }
+                if (snapper)
+                {
+                    Ebutton2.Text = "Squid";
+                }
+                else
+                {
+                    Ebutton2.Text = "???";
+                }
+                if (gurnard)
+                {
+                    Ebutton2.Text = "Yellow Tang";
+                }
+                else
+                {
+                    Ebutton2.Text = "???";
+                }
+            }
+            if (displaytype == "EAutumn")
+            {
+                RecE1 = new Rectangle(20, 20, 190, 90);
                 g2.FillRectangle(Brushes.Pink, RecE1);
-                
                 RecE2 = new Rectangle(240, 20, 190, 90);
                 g2.FillRectangle(Brushes.LightGreen, RecE2);
-
                 RecE3 = new Rectangle(20, 140, 190, 90);
                 g2.FillRectangle(Brushes.DarkOrange, RecE3);
-
                 RecE4 = new Rectangle(240, 140, 190, 90);
                 g2.FillRectangle(Brushes.LightBlue, RecE4);
-
-                
+            }
+            if (displaytype == "EWinter")
+            {
+                RecE1 = new Rectangle(20, 20, 190, 90);
+                g2.FillRectangle(Brushes.Pink, RecE1);
+                RecE2 = new Rectangle(240, 20, 190, 90);
+                g2.FillRectangle(Brushes.LightGreen, RecE2);
+                RecE3 = new Rectangle(20, 140, 190, 90);
+                g2.FillRectangle(Brushes.DarkOrange, RecE3);
+                RecE4 = new Rectangle(240, 140, 190, 90);
+                g2.FillRectangle(Brushes.LightBlue, RecE4);
             }
         }
 
@@ -297,8 +474,6 @@ namespace Fishy_Business
             if (FishyPopUp.Visible == true)
             {
                 TmrFish.Enabled = false;
-                LblText.Visible = true;
-                LblContinue.Visible = true;
                 Catch = false;
                 TmrCatch.Enabled = false;
             }
@@ -390,40 +565,42 @@ namespace Fishy_Business
                 displaytype = "Encyclopedia"; 
                 FishyPopUp.Visible = true;
             }
-            if (Catch)
-                {
-                   
-                    
-                        if (e.KeyData == Keys.Space)
-                        {
+            if (FishyPopUp.Visible == false)
+            { 
+                    if (Catch)
+                    {
+
+
+                    if (e.KeyData == Keys.Space)
+                    {
 
                         if (spring)
-                        {  
+                        {
                             int rand = random.Next(1, 5);
                             if (rand == 1)
                             {
                                 FishyPopUp.Visible = true;
                                 displaytype = "Redcod";
 
-                        }
-                        if (rand == 2)
+                            }
+                            if (rand == 2)
                             {
                                 FishyPopUp.Visible = true;
-                                displaytype = "Bluecod";;
+                                displaytype = "Bluecod"; ;
 
-                        }
+                            }
                             if (rand == 3)
                             {
                                 FishyPopUp.Visible = true;
                                 displaytype = "Snapper";
 
-                        }
-                        if (rand == 4)
+                            }
+                            if (rand == 4)
                             {
                                 FishyPopUp.Visible = true;
                                 displaytype = "Gurnard";
+                            }
                         }
-                    }
 
                         if (summer)
                         {
@@ -433,25 +610,25 @@ namespace Fishy_Business
                                 rockfish = true;
                                 FishyPopUp.Visible = true;
                                 displaytype = "Rockfish";
-                        }
+                            }
                             if (rand == 2)
                             {
                                 bluetang = true;
                                 FishyPopUp.Visible = true;
                                 displaytype = "Bluetang";
-                        }
+                            }
                             if (rand == 3)
                             {
                                 squid = true;
                                 FishyPopUp.Visible = true;
                                 displaytype = "Squid";
-                        }
+                            }
                             if (rand == 4)
                             {
                                 yellowtang = true;
                                 FishyPopUp.Visible = true;
                                 displaytype = "Yellowtang";
-                        }
+                            }
                         }
 
                         if (autumn)
@@ -462,25 +639,25 @@ namespace Fishy_Business
                                 clownfish = true;
                                 FishyPopUp.Visible = true;
                                 displaytype = "Clownfish";
-                        }
+                            }
                             if (rand == 2)
                             {
                                 catfish = true;
                                 FishyPopUp.Visible = true;
                                 displaytype = "Catfish";
-                        }
+                            }
                             if (rand == 3)
                             {
                                 pinksalmon = true;
                                 FishyPopUp.Visible = true;
                                 displaytype = "Pinksalmon";
-                        }
+                            }
                             if (rand == 4)
                             {
                                 ringtailunicornfish = true;
                                 FishyPopUp.Visible = true;
                                 displaytype = "Ringtailunicornfish";
-                        }
+                            }
                         }
 
                         if (winter)
@@ -491,19 +668,19 @@ namespace Fishy_Business
                                 kingfish = true;
                                 FishyPopUp.Visible = true;
                                 displaytype = "Kingfish";
-                        }
+                            }
                             if (rand == 2)
                             {
                                 pufferfish = true;
                                 FishyPopUp.Visible = true;
                                 displaytype = "Pufferfish";
-                        }
+                            }
                             if (rand == 3)
                             {
-                                eel = true; 
+                                eel = true;
                                 FishyPopUp.Visible = true;
                                 displaytype = "Eel";
-                        }
+                            }
                             if (rand == 4)
                             {
                                 jellyfish = true;
@@ -511,7 +688,7 @@ namespace Fishy_Business
                                 displaytype = "Jellyfish";
                             }
                         }
-                    
+                    }
                 }
             }
             
