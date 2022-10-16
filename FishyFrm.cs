@@ -194,7 +194,7 @@ namespace Fishy_Business
             if (displaytype == "Snapper")
             {
                 if (snapper == false) { LblNew.Visible = true; }
-                LblText.Text = "You caught a snapper!";
+                LblText.Text = "You caught a snapper!" + Environment.NewLine + "ajsdngfoasbgndlansdgfknasgfklndafglknadfsglknalgfkndgnfldsfkngklsdnfglksdnfgklsdnfgklndfsg" + Environment.NewLine + "ajsdngfoasbgndlansdgfknasgfklndafglknadfsglknalgfkndgnfldsfkngklsdnfglksdnfgklsdnfgklndfsg";
                 displayfish = Properties.Resources.Snapper; 
                 g2.DrawImage(displayfish, displayfishRec);
                 snapper = true;
@@ -202,7 +202,7 @@ namespace Fishy_Business
             if (displaytype == "Redcod")
             {
                 if (redcod == false) { LblNew.Visible = true; }
-                LblText.Text = "You caught a red cod!";
+                LblText.Text = "You caught a red cod!" + Environment.NewLine + "ajsdngfoasbgndlansdgfknasgfklndafglknadfsglknalgfkndgnfldsfkngklsdnfglksdnfgklsdnfgklndfsg" + Environment.NewLine + "ajsdngfoasbgndlansdgfknasgfklndafglknadfsglknalgfkndgnfldsfkngklsdnfglksdnfgklsdnfgklndfsg" + Environment.NewLine + "ajsdngfoasbgndlansdgfknasgfklndafglknadfsglknalgfkndgnfldsfkngklsdnfglksdnfgklsdnfgklndfsg";
                 displayfish = Properties.Resources.Red_cod;
                 g2.DrawImage(displayfish, displayfishRec);
                 redcod = true;
@@ -355,7 +355,6 @@ namespace Fishy_Business
                 Ebutton4.Visible = true;
                 LblText.Visible = false;
                 LblContinue.Visible = false;
-                LblInfo.Visible = false;
                 Ebutton1.Text = "Spring";
                 Ebutton2.Text = "Summer";
                 Ebutton3.Text = "Autumn";
@@ -476,7 +475,14 @@ namespace Fishy_Business
                 TmrFish.Enabled = false;
                 Catch = false;
                 TmrCatch.Enabled = false;
+                FishyPopUp.Enabled = true;
             }
+            else
+            {
+                TmrFish.Enabled = true;
+                FishyPopUp.Enabled = false;
+            }
+
             Graphics g3 = e.Graphics; //graphics object
 
             //title and season title images

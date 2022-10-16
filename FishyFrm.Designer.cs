@@ -32,14 +32,14 @@ namespace Fishy_Business
             this.components = new System.ComponentModel.Container();
             this.FishyPanel = new System.Windows.Forms.Panel();
             this.FishyPopUp = new System.Windows.Forms.Panel();
-            this.Ebutton4 = new System.Windows.Forms.Button();
-            this.Ebutton3 = new System.Windows.Forms.Button();
-            this.Ebutton2 = new System.Windows.Forms.Button();
             this.LblInfo = new System.Windows.Forms.Label();
             this.LblNew = new System.Windows.Forms.Label();
             this.LblContinue = new System.Windows.Forms.Label();
             this.LblText = new System.Windows.Forms.Label();
             this.Ebutton1 = new System.Windows.Forms.Button();
+            this.Ebutton2 = new System.Windows.Forms.Button();
+            this.Ebutton3 = new System.Windows.Forms.Button();
+            this.Ebutton4 = new System.Windows.Forms.Button();
             this.TmrFish = new System.Windows.Forms.Timer(this.components);
             this.TmrCatch = new System.Windows.Forms.Timer(this.components);
             this.TmrWait = new System.Windows.Forms.Timer(this.components);
@@ -62,14 +62,14 @@ namespace Fishy_Business
             // 
             this.FishyPopUp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.FishyPopUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.FishyPopUp.Controls.Add(this.Ebutton4);
-            this.FishyPopUp.Controls.Add(this.Ebutton3);
-            this.FishyPopUp.Controls.Add(this.Ebutton2);
             this.FishyPopUp.Controls.Add(this.LblInfo);
             this.FishyPopUp.Controls.Add(this.LblNew);
             this.FishyPopUp.Controls.Add(this.LblContinue);
             this.FishyPopUp.Controls.Add(this.LblText);
             this.FishyPopUp.Controls.Add(this.Ebutton1);
+            this.FishyPopUp.Controls.Add(this.Ebutton2);
+            this.FishyPopUp.Controls.Add(this.Ebutton3);
+            this.FishyPopUp.Controls.Add(this.Ebutton4);
             this.FishyPopUp.Location = new System.Drawing.Point(100, 100);
             this.FishyPopUp.Name = "FishyPopUp";
             this.FishyPopUp.Size = new System.Drawing.Size(450, 250);
@@ -77,41 +77,6 @@ namespace Fishy_Business
             this.FishyPopUp.Visible = false;
             this.FishyPopUp.Click += new System.EventHandler(this.GeneralClick);
             this.FishyPopUp.Paint += new System.Windows.Forms.PaintEventHandler(this.FishyPopUp_Paint);
-            // 
-            // Ebutton4
-            // 
-            this.Ebutton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ebutton4.Location = new System.Drawing.Point(240, 140);
-            this.Ebutton4.Name = "Ebutton4";
-            this.Ebutton4.Size = new System.Drawing.Size(190, 90);
-            this.Ebutton4.TabIndex = 10;
-            this.Ebutton4.Text = "button4";
-            this.Ebutton4.UseVisualStyleBackColor = true;
-            this.Ebutton4.Visible = false;
-            // 
-            // Ebutton3
-            // 
-            this.Ebutton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ebutton3.Location = new System.Drawing.Point(20, 140);
-            this.Ebutton3.Name = "Ebutton3";
-            this.Ebutton3.Size = new System.Drawing.Size(190, 90);
-            this.Ebutton3.TabIndex = 9;
-            this.Ebutton3.Text = "button3";
-            this.Ebutton3.UseVisualStyleBackColor = true;
-            this.Ebutton3.Visible = false;
-            // 
-            // Ebutton2
-            // 
-            this.Ebutton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ebutton2.Location = new System.Drawing.Point(240, 20);
-            this.Ebutton2.Name = "Ebutton2";
-            this.Ebutton2.Size = new System.Drawing.Size(190, 90);
-            this.Ebutton2.TabIndex = 8;
-            this.Ebutton2.Text = "button2";
-            this.Ebutton2.UseVisualStyleBackColor = true;
-            this.Ebutton2.UseWaitCursor = true;
-            this.Ebutton2.Visible = false;
-            this.Ebutton2.Click += new System.EventHandler(this.Ebutton2_Click);
             // 
             // LblInfo
             // 
@@ -165,10 +130,50 @@ namespace Fishy_Business
             this.Ebutton1.Name = "Ebutton1";
             this.Ebutton1.Size = new System.Drawing.Size(190, 90);
             this.Ebutton1.TabIndex = 7;
+            this.Ebutton1.TabStop = false;
             this.Ebutton1.Text = "button1";
-            this.Ebutton1.UseVisualStyleBackColor = true;
+            this.Ebutton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Ebutton1.UseVisualStyleBackColor = false;
             this.Ebutton1.Visible = false;
             this.Ebutton1.Click += new System.EventHandler(this.Ebutton1_Click);
+            // 
+            // Ebutton2
+            // 
+            this.Ebutton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ebutton2.Location = new System.Drawing.Point(240, 20);
+            this.Ebutton2.Name = "Ebutton2";
+            this.Ebutton2.Size = new System.Drawing.Size(190, 90);
+            this.Ebutton2.TabIndex = 8;
+            this.Ebutton2.TabStop = false;
+            this.Ebutton2.Text = "button2";
+            this.Ebutton2.UseVisualStyleBackColor = true;
+            this.Ebutton2.UseWaitCursor = true;
+            this.Ebutton2.Visible = false;
+            this.Ebutton2.Click += new System.EventHandler(this.Ebutton2_Click);
+            // 
+            // Ebutton3
+            // 
+            this.Ebutton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ebutton3.Location = new System.Drawing.Point(20, 140);
+            this.Ebutton3.Name = "Ebutton3";
+            this.Ebutton3.Size = new System.Drawing.Size(190, 90);
+            this.Ebutton3.TabIndex = 9;
+            this.Ebutton3.TabStop = false;
+            this.Ebutton3.Text = "button3";
+            this.Ebutton3.UseVisualStyleBackColor = true;
+            this.Ebutton3.Visible = false;
+            // 
+            // Ebutton4
+            // 
+            this.Ebutton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ebutton4.Location = new System.Drawing.Point(240, 140);
+            this.Ebutton4.Name = "Ebutton4";
+            this.Ebutton4.Size = new System.Drawing.Size(190, 90);
+            this.Ebutton4.TabIndex = 10;
+            this.Ebutton4.TabStop = false;
+            this.Ebutton4.Text = "button4";
+            this.Ebutton4.UseVisualStyleBackColor = true;
+            this.Ebutton4.Visible = false;
             // 
             // TmrFish
             // 
