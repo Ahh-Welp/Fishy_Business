@@ -60,6 +60,20 @@ namespace Fishy_Business
                         LblContinue.Visible = true;
                     }
                 }
+                if (displaytype == "ESummer")
+                {
+                    if (redcod)
+                    {
+                        displaytype = "Redcod";
+                        Ebutton1.Visible = false;
+                        Ebutton2.Visible = false;
+                        Ebutton3.Visible = false;
+                        Ebutton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                    }
+                }
+
             }
         }
 
@@ -103,7 +117,7 @@ namespace Fishy_Business
             }
             if (displaytype == "EAutumn")
             {
-                if (catfish)
+                if (catfish || success)
                 {
                     displaytype = "Catfish";
                     Ebutton1.Visible = false;
@@ -116,7 +130,7 @@ namespace Fishy_Business
             }
             if (displaytype == "EWinter")
             {
-                if (pufferfish)
+                if (pufferfish || success)
                 {
                     displaytype = "Pufferfish";
                     Ebutton1.Visible = false;
@@ -190,6 +204,22 @@ namespace Fishy_Business
                 winter = false;
                 success = true;
                 spring = true;
+                redcod = false;
+                bluecod = false;
+                snapper = false;
+                gurnard = false;
+                rockfish = false;
+                bluetang = false;
+                squid = false;
+                yellowtang = false;
+                clownfish = false;
+                catfish = false;
+                pinksalmon = false;
+                ringtailunicornfish = false;
+                kingfish = false;
+                pufferfish = false;
+                eel = false;
+                jellyfish = false;
             }
         }
 
@@ -236,7 +266,7 @@ namespace Fishy_Business
             }
             if (displaytype == "Summer")
             {
-                LblText.Text = "It is now summer!";
+                LblText.Text = "It is now summer!" + Environment.NewLine + " You are now a novice baiter!" + Environment.NewLine+ "" + Environment.NewLine + "New fish are now available, but they are more aware of your presence. They will be faster and you will have less time to catch them.";
             }
             if (displaytype == "Rockfish")
             {
@@ -272,7 +302,8 @@ namespace Fishy_Business
             }
             if (displaytype == "Autumn")
             {
-                LblText.Text = "It is now Autumn!";
+                LblText.Text = "It is now Autumn!" + Environment.NewLine + " You are now a professional baiter!" + Environment.NewLine + "" + Environment.NewLine + "New fish are now available, but they are more aware of your presence. They will be faster and you will have less time to catch them.";
+
             }
             if (displaytype == "Clownfish")
             {
@@ -308,7 +339,7 @@ namespace Fishy_Business
             }
             if (displaytype == "Winter")
             {
-                LblText.Text = "It is now Winter!";
+                LblText.Text = "It is now Winter!" + Environment.NewLine + " You are now a master baiter!" + Environment.NewLine + "" + Environment.NewLine + "New fish are now available, but they are more aware of your presence. They will be faster and you will have less time to catch them.";
             }
             if (displaytype == "Kingfish")
             {
@@ -345,6 +376,7 @@ namespace Fishy_Business
             if (displaytype == "Success")
             {
                 LblText.Text = "You have caught all fish!";
+
             }
             if (displaytype == "Information")
             {
@@ -391,24 +423,24 @@ namespace Fishy_Business
                 }
                 if (snapper)
                 {
-                    Ebutton2.Text = "Snapper";
+                    Ebutton3.Text = "Snapper";
                 }
                 else
                 {
-                    Ebutton2.Text = "???";
+                    Ebutton3.Text = "???";
                 }
                 if (gurnard)
                 {
-                    Ebutton2.Text = " Gurnard";
+                    Ebutton4.Text = " Gurnard";
                 }
                 else
                 {
-                    Ebutton2.Text = "???";
+                    Ebutton4.Text = "???";
                 }
             }
             if (displaytype == "ESummer")
             {
-                if (redcod)
+                if (rockfish)
                 {
                     Ebutton1.Text = "Rockfish";
                 }
@@ -416,7 +448,7 @@ namespace Fishy_Business
                 {
                     Ebutton1.Text = "???";
                 }
-                if (bluecod)
+                if (bluetang)
                 {
                     Ebutton2.Text = "Blue Tang";
                 }
@@ -424,44 +456,92 @@ namespace Fishy_Business
                 {
                     Ebutton2.Text = "???";
                 }
-                if (snapper)
+                if (squid)
                 {
-                    Ebutton2.Text = "Squid";
+                    Ebutton3.Text = "Squid";
                 }
                 else
                 {
-                    Ebutton2.Text = "???";
+                    Ebutton3.Text = "???";
                 }
-                if (gurnard)
+                if (yellowtang)
                 {
-                    Ebutton2.Text = "Yellow Tang";
+                    Ebutton4.Text = "Yellow Tang";
                 }
                 else
                 {
-                    Ebutton2.Text = "???";
+                    Ebutton4.Text = "???";
                 }
             }
             if (displaytype == "EAutumn")
             {
-                RecE1 = new Rectangle(20, 20, 190, 90);
-                g2.FillRectangle(Brushes.Pink, RecE1);
-                RecE2 = new Rectangle(240, 20, 190, 90);
-                g2.FillRectangle(Brushes.LightGreen, RecE2);
-                RecE3 = new Rectangle(20, 140, 190, 90);
-                g2.FillRectangle(Brushes.DarkOrange, RecE3);
-                RecE4 = new Rectangle(240, 140, 190, 90);
-                g2.FillRectangle(Brushes.LightBlue, RecE4);
+                if (clownfish)
+                {
+                    Ebutton1.Text = "Clownfish";
+                }
+                else
+                {
+                    Ebutton1.Text = "???";
+                }
+                if (catfish)
+                {
+                    Ebutton2.Text = "Catfish";
+                }
+                else
+                {
+                    Ebutton2.Text = "???";
+                }
+                if (pinksalmon)
+                {
+                    Ebutton3.Text = "Pink Salmon";
+                }
+                else
+                {
+                    Ebutton3.Text = "???";
+                }
+                if (ringtailunicornfish)
+                {
+                    Ebutton4.Text = "Ringtail unicornfish";
+                }
+                else
+                {
+                    Ebutton4.Text = "???";
+                }
             }
             if (displaytype == "EWinter")
             {
-                RecE1 = new Rectangle(20, 20, 190, 90);
-                g2.FillRectangle(Brushes.Pink, RecE1);
-                RecE2 = new Rectangle(240, 20, 190, 90);
-                g2.FillRectangle(Brushes.LightGreen, RecE2);
-                RecE3 = new Rectangle(20, 140, 190, 90);
-                g2.FillRectangle(Brushes.DarkOrange, RecE3);
-                RecE4 = new Rectangle(240, 140, 190, 90);
-                g2.FillRectangle(Brushes.LightBlue, RecE4);
+                if (rockfish)
+                {
+                    Ebutton1.Text = "Rockfish";
+                }
+                else
+                {
+                    Ebutton1.Text = "???";
+                }
+                if (bluetang)
+                {
+                    Ebutton2.Text = "Blue Tang";
+                }
+                else
+                {
+                    Ebutton2.Text = "???";
+                }
+                if (squid)
+                {
+                    Ebutton3.Text = "Squid";
+                }
+                else
+                {
+                    Ebutton3.Text = "???";
+                }
+                if (yellowtang)
+                {
+                    Ebutton4.Text = "Yellow Tang";
+                }
+                else
+                {
+                    Ebutton4.Text = "???";
+                }
             }
         }
 
