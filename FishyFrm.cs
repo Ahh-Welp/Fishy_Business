@@ -36,7 +36,38 @@ namespace Fishy_Business
         public Image Title;
         public Image Seasontitle;
         public string PlayerName;
-        bool success, Catch, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, eel, jellyfish;
+        bool success, Catch, time, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, eel, jellyfish;
+
+        private void Ebutton1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (displaytype == "Encyclopedia")
+            {
+                    displaytype = "ESpring";
+                    BtnTmr.Enabled = true;
+            }
+            if (time) 
+            { 
+                if (displaytype == "ESpring")
+                {
+                    if (redcod)
+                    {
+                        displaytype = "Redcod";
+                        Ebutton1.Visible = false;
+                        Ebutton2.Visible = false;
+                        Ebutton3.Visible = false;
+                        Ebutton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                    }
+                }
+            }
+        }
+
+        private void BtnTmr_Tick(object sender, EventArgs e)
+        {
+            time = true;
+            BtnTmr.Enabled = false;
+        }
 
         private void Ebutton2_Click(object sender, EventArgs e)
         {
@@ -46,7 +77,7 @@ namespace Fishy_Business
             }
             if (displaytype == "ESpring")
             {
-                if (bluecod)
+                if (bluecod || success)
                 {
                     displaytype = "Bluecod";
                     Ebutton1.Visible = false;
@@ -59,7 +90,7 @@ namespace Fishy_Business
             }
             if (displaytype == "ESummer")
             {
-                if (bluetang)
+                if (bluetang || success)
                 {
                     displaytype = "Bluetang";
                     Ebutton1.Visible = false;
@@ -98,27 +129,6 @@ namespace Fishy_Business
             }
         }
 
-        private void Ebutton1_Click(object sender, EventArgs e)
-        {
-            if (displaytype == "Encyclopedia")
-            {
-                displaytype = "ESpring";
-            }
-            if (displaytype == "ESpring")
-            {
-                if (redcod)
-                {
-                    displaytype = "Redcod";
-                    Ebutton1.Visible = false;
-                    Ebutton2.Visible = false;
-                    Ebutton3.Visible = false;
-                    Ebutton4.Visible = false;
-                    LblText.Visible = true;
-                    LblContinue.Visible = true;
-                }
-            }
-        }
-
         private void GeneralClick(object sender, EventArgs e)
         {
             if (FishyPopUp.Visible == true)
@@ -137,6 +147,7 @@ namespace Fishy_Business
                 Ebutton4.Visible = false;
                 LblText.Text = "";
                 LblContinue.Visible = true;
+                time = false;
                 checkSeason();
             }
             
@@ -503,7 +514,22 @@ namespace Fishy_Business
             {
                 //creating the circle for the fish
                 int centre_x = 200, centre_y = 300;
-                phi += 0.01;
+                if (spring)
+                {
+                    phi += 0.01; //changes speed of the fish
+                }
+                if (summer)
+                {
+                    phi += 0.015; //changes speed of the fish
+                }
+                if (autumn)
+                {
+                    phi += 0.03; //changes speed of the fish
+                }
+                if (winter)
+                {
+                    phi += 0.05; //changes speed of the fish
+                }
                 f.DrawFish(g, x = radius * Math.Cos(phi + spacing) + centre_x, y = radius * Math.Sin(phi + spacing) + centre_y);
                 spacing = spacing + 2;
             }

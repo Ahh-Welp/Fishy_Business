@@ -43,6 +43,7 @@ namespace Fishy_Business
             this.TmrFish = new System.Windows.Forms.Timer(this.components);
             this.TmrCatch = new System.Windows.Forms.Timer(this.components);
             this.TmrWait = new System.Windows.Forms.Timer(this.components);
+            this.BtnTmr = new System.Windows.Forms.Timer(this.components);
             this.FishyPanel.SuspendLayout();
             this.FishyPopUp.SuspendLayout();
             this.SuspendLayout();
@@ -125,7 +126,8 @@ namespace Fishy_Business
             // Ebutton1
             // 
             this.Ebutton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ebutton1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.Ebutton1.Image = global::Fishy_Business.Properties.Resources.Snapper;
+            this.Ebutton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Ebutton1.Location = new System.Drawing.Point(20, 20);
             this.Ebutton1.Name = "Ebutton1";
             this.Ebutton1.Size = new System.Drawing.Size(190, 90);
@@ -135,7 +137,7 @@ namespace Fishy_Business
             this.Ebutton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.Ebutton1.UseVisualStyleBackColor = false;
             this.Ebutton1.Visible = false;
-            this.Ebutton1.Click += new System.EventHandler(this.Ebutton1_Click);
+            this.Ebutton1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Ebutton1_MouseClick);
             // 
             // Ebutton2
             // 
@@ -192,6 +194,10 @@ namespace Fishy_Business
             this.TmrWait.Interval = 2500;
             this.TmrWait.Tick += new System.EventHandler(this.TmrWait_Tick);
             // 
+            // BtnTmr
+            // 
+            this.BtnTmr.Tick += new System.EventHandler(this.BtnTmr_Tick);
+            // 
             // FishyFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +230,7 @@ namespace Fishy_Business
         private System.Windows.Forms.Button Ebutton2;
         private System.Windows.Forms.Button Ebutton4;
         private System.Windows.Forms.Button Ebutton3;
+        private System.Windows.Forms.Timer BtnTmr;
     }
 }
 
