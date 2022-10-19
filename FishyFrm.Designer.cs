@@ -44,6 +44,7 @@ namespace Fishy_Business
             this.TmrCatch = new System.Windows.Forms.Timer(this.components);
             this.TmrWait = new System.Windows.Forms.Timer(this.components);
             this.BtnTmr = new System.Windows.Forms.Timer(this.components);
+            this.LblBait = new System.Windows.Forms.Label();
             this.FishyPanel.SuspendLayout();
             this.FishyPopUp.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +52,7 @@ namespace Fishy_Business
             // FishyPanel
             // 
             this.FishyPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.FishyPanel.Controls.Add(this.LblBait);
             this.FishyPanel.Controls.Add(this.FishyPopUp);
             this.FishyPanel.Location = new System.Drawing.Point(0, 0);
             this.FishyPanel.Name = "FishyPanel";
@@ -126,7 +128,6 @@ namespace Fishy_Business
             // Ebutton1
             // 
             this.Ebutton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ebutton1.Image = global::Fishy_Business.Properties.Resources.Snapper;
             this.Ebutton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Ebutton1.Location = new System.Drawing.Point(20, 20);
             this.Ebutton1.Name = "Ebutton1";
@@ -198,6 +199,16 @@ namespace Fishy_Business
             // 
             this.BtnTmr.Tick += new System.EventHandler(this.BtnTmr_Tick);
             // 
+            // LblBait
+            // 
+            this.LblBait.AutoSize = true;
+            this.LblBait.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblBait.Location = new System.Drawing.Point(557, 284);
+            this.LblBait.Name = "LblBait";
+            this.LblBait.Size = new System.Drawing.Size(0, 26);
+            this.LblBait.TabIndex = 1;
+            this.LblBait.Tag = "";
+            // 
             // FishyFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -209,6 +220,7 @@ namespace Fishy_Business
             this.Load += new System.EventHandler(this.FishyFrm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FishyFrm_KeyDown);
             this.FishyPanel.ResumeLayout(false);
+            this.FishyPanel.PerformLayout();
             this.FishyPopUp.ResumeLayout(false);
             this.FishyPopUp.PerformLayout();
             this.ResumeLayout(false);
@@ -231,6 +243,7 @@ namespace Fishy_Business
         private System.Windows.Forms.Button Ebutton4;
         private System.Windows.Forms.Button Ebutton3;
         private System.Windows.Forms.Timer BtnTmr;
+        private System.Windows.Forms.Label LblBait;
     }
 }
 

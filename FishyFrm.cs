@@ -29,12 +29,12 @@ namespace Fishy_Business
         private Rectangle rodRec;//variable for a rectangle to place our image in
         private Rectangle titleRec;
         public Rectangle seasonRec;
-        private Rectangle RecE1; //encyclopaedia box 1
-        private Rectangle RecE2; //encyclopaedia box 2
-        private Rectangle RecE3; //encyclopaedia box 3
-        private Rectangle RecE4; //encyclopaedia box 4
+        public Rectangle alertRec;
+        public Rectangle infoRec;
         public Image Title;
         public Image Seasontitle;
+        public Image Info;
+        public Image Alert;
         public string PlayerName;
         bool success, Catch, time, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, eel, jellyfish;
 
@@ -166,7 +166,14 @@ namespace Fishy_Business
             }
             
         }
-
+        public void CheckBait()
+        {
+            if (bait == 0)
+            {
+                displaytype = "failure";
+                FishyPopUp.Visible = true;
+            }
+        }
         public void checkSeason()
         {
             if (redcod && bluecod && gurnard && snapper && spring)
@@ -582,6 +589,8 @@ namespace Fishy_Business
             g3.DrawImage(Title, titleRec);
             seasonRec = new Rectangle(450, 150, 200, 50);
             g3.DrawImage(Seasontitle, seasonRec);
+            //information buttons
+
 
             Random random = new Random();
             //get the graphics used to paint on the panel control
@@ -620,7 +629,7 @@ namespace Fishy_Business
             foreach (Fish f_this in fish) // this stops the fish and ensures that the fish can be caught. 
             {
                 if (TmrWait.Enabled == false)
-                {
+                { 
                     if (rodRec.IntersectsWith(f_this.fishRec))
                     {
 
@@ -633,7 +642,12 @@ namespace Fishy_Business
                     }
                 }
             }
-            
+            if (Catch)
+                {
+                alertRec = new Rectangle(240, 200, 50, 50);
+                Alert = Properties.Resources.Alert;
+                g3.DrawImage(Alert, alertRec);
+            }
             
         }
 
@@ -645,7 +659,9 @@ namespace Fishy_Business
             winter = false;
             success = false;
             Seasontitle = Properties.Resources.Spring;
-            bait = 0;
+            bait = 20;
+            LblBait.Text = bait.ToString();
+
         }
 
         public void TmrCatch_Tick(object sender, EventArgs e)
@@ -679,13 +695,16 @@ namespace Fishy_Business
             }
             if (FishyPopUp.Visible == false)
             { 
-                    if (Catch)
-                    {
-
-
                     if (e.KeyData == Keys.Space)
                     {
+                    bait -= 1; //take away one bait
+                    LblBait.Text = bait.ToString();
 
+                    if (Catch)
+                    {
+                        Catch = false;
+                        TmrWait.Enabled = true;
+                        bait += 2;
                         if (spring)
                         {
                             int rand = random.Next(1, 5);
