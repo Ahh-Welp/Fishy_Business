@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Policy;
 using System.Text;
@@ -18,176 +20,358 @@ namespace Fishy_Business
         Graphics g; //declare a graphics object called g
         // declare space for an array of 3 objects called fish 
         Fish[] fish = new Fish[3];
-        double x, y;
-        double phi = 0;
-        int radius = 80;
-        int NumberOfFish;
-        public int bait;
-        public string displaytype = null;
-        public Rectangle displayfishRec;
-        public Image displayfish;
-        private Rectangle rodRec;//variable for a rectangle to place our image in
-        private Rectangle titleRec;
-        public Rectangle seasonRec;
-        public Rectangle alertRec;
-        public Rectangle infoRec;
+        double x, y; //fish movement
+        double phi = 0; //fish speed
+        int radius = 80; //fish radius
+        int NumberOfFish; // interger to set number of fish
+        public int Bait;  //interger for bait/lives
+        public string DisplayType = null; //string for the PopUpPanel display
+        public Rectangle DisplayFishRec; //rectangle for pop up panel fish display
+        public Image DisplayFish;
+        private Rectangle RodRec; //variable for a rectangle to place our image in
+        private Rectangle TitleRec; //rectangle for title image
+        public Rectangle SeasonRec; //rectangle for season title image
+        public Rectangle AlertRec;
+        public Rectangle InfoRec;
         public Image Title;
         public Image Seasontitle;
         public Image Info;
         public Image Alert;
-        public string PlayerName;
-        bool success, Catch, time, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, eel, jellyfish;
+        public bool stop, success, Catch, time, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, eel, jellyfish;
 
-        private void Ebutton1_MouseClick(object sender, MouseEventArgs e)
+        private void InfoBtn_Click(object sender, EventArgs e)
         {
-            if (displaytype == "Encyclopedia")
-            {
-                    displaytype = "ESpring";
+            DisplayType = "Information";
+            FishyPopUp.Visible = true;
+            this.Focus();
+        }
+        private void EButton1_Click(object sender, EventArgs e)
+        {
+                if (DisplayType == "Encyclopedia")
+                {
+                    DisplayType = "ESpring";
                     BtnTmr.Enabled = true;
-            }
-            if (time) 
-            { 
-                if (displaytype == "ESpring")
+                }
+                if (time)
                 {
-                    if (redcod)
+                    if (DisplayType == "ESpring")
                     {
-                        displaytype = "Redcod";
-                        Ebutton1.Visible = false;
-                        Ebutton2.Visible = false;
-                        Ebutton3.Visible = false;
-                        Ebutton4.Visible = false;
-                        LblText.Visible = true;
-                        LblContinue.Visible = true;
+                        if (redcod)
+                        {
+                            EButton1.Visible = false;
+                            EButton2.Visible = false;
+                            EButton3.Visible = false;
+                            EButton4.Visible = false;
+                            LblText.Visible = true;
+                            LblContinue.Visible = true;                           
+                            DisplayType = "Redcod";
+                            FishyPopUp.Invalidate();
+                        }
+                    }
+                    if (DisplayType == "ESummer")
+                    {
+                        if (rockfish)
+                        {
+                            DisplayType = "Rockfish";
+                            EButton1.Visible = false;
+                            EButton2.Visible = false;
+                            EButton3.Visible = false;
+                            EButton4.Visible = false;
+                            LblText.Visible = true;
+                            LblContinue.Visible = true;
+                            FishyPopUp.Invalidate();
                     }
                 }
-                if (displaytype == "ESummer")
-                {
-                    if (redcod)
+                    if (DisplayType == "EAutumn")
                     {
-                        displaytype = "Redcod";
-                        Ebutton1.Visible = false;
-                        Ebutton2.Visible = false;
-                        Ebutton3.Visible = false;
-                        Ebutton4.Visible = false;
-                        LblText.Visible = true;
-                        LblContinue.Visible = true;
+                        if (clownfish)
+                        {
+                            DisplayType = "Clownfish";
+                            EButton1.Visible = false;
+                            EButton2.Visible = false;
+                            EButton3.Visible = false;
+                            EButton4.Visible = false;
+                            LblText.Visible = true;
+                            LblContinue.Visible = true;
+                            FishyPopUp.Invalidate();
                     }
                 }
+                    if (DisplayType == "EWinter")
+                    {
+                        if (kingfish)
+                        {
+                            DisplayType = "Kingfish";
+                            EButton1.Visible = false;
+                            EButton2.Visible = false;
+                            EButton3.Visible = false;
+                            EButton4.Visible = false;
+                            LblText.Visible = true;
+                            LblContinue.Visible = true;
+                            FishyPopUp.Invalidate();
 
+                        }
+                    }
+                }
+        }
+        private void EncyclopediaBtn_Click(object sender, EventArgs e)
+        {
+            DisplayType = "Encyclopedia";
+            FishyPopUp.Visible = true;
+            this.Focus();
+        }
+        public void Ebutton4_Click(object sender, EventArgs e)
+        {
+            if (DisplayType == "Encyclopedia")
+            {
+                DisplayType = "EWinter";
+                BtnTmr.Enabled = true;
+            }
+            if (time)
+            {
+                if (DisplayType == "ESpring")
+                {
+                    if (gurnard)
+                    {
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        DisplayType = "Gurnard";
+                        FishyPopUp.Invalidate();
+                    }
+                }
+                if (DisplayType == "ESummer")
+                {
+                    if (yellowtang)
+                    {
+                        DisplayType = "Yellowtang";
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        FishyPopUp.Invalidate();
+                    }
+                }
+                if (DisplayType == "EAutumn")
+                {
+                    if (ringtailunicornfish)
+                    {
+                        DisplayType = "Ringtailunicornfish";
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        FishyPopUp.Invalidate();
+                    }
+                }
+                if (DisplayType == "EWinter")
+                {
+                    if (jellyfish)
+                    {
+                        DisplayType = "Jellyfish";
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        FishyPopUp.Invalidate();
+                    }
+                }
             }
         }
-
-        private void BtnTmr_Tick(object sender, EventArgs e)
+        public void Ebutton3_Click(object sender, EventArgs e)
+        {
+            if (DisplayType == "Encyclopedia")
+            {
+                DisplayType = "EAutumn";
+                BtnTmr.Enabled = true;
+            }
+            if (time)
+            {
+                if (DisplayType == "ESpring")
+                {
+                    if (snapper)
+                    {
+                        DisplayType = "Snapper";
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        FishyPopUp.Invalidate();
+                    }
+                }
+                if (DisplayType == "ESummer")
+                {
+                    if (squid)
+                    {
+                        DisplayType = "Squid";
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        FishyPopUp.Invalidate();
+                    }
+                }
+                if (DisplayType == "EAutumn")
+                {
+                    if (pinksalmon)
+                    {
+                        DisplayType = "Pinksalmon";
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        FishyPopUp.Invalidate();
+                    }
+                }
+                if (DisplayType == "EWinter")
+                {
+                    if (eel)
+                    {
+                        DisplayType = "Eel";
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        FishyPopUp.Invalidate();
+                    }
+                }
+            }
+        }
+        public void BtnTmr_Tick(object sender, EventArgs e)
         {
             time = true;
             BtnTmr.Enabled = false;
         }
-
-        private void Ebutton2_Click(object sender, EventArgs e)
+        public void Ebutton2_Click(object sender, EventArgs e)
         {
-            if (displaytype == "Encyclopedia")
+            if (DisplayType == "Encyclopedia")
             {
-                displaytype = "ESummer";
+                DisplayType = "ESummer";
+                BtnTmr.Enabled = true;
             }
-            if (displaytype == "ESpring")
+            if (time)
             {
-                if (bluecod || success)
+                if (DisplayType == "ESpring")
                 {
-                    displaytype = "Bluecod";
-                    Ebutton1.Visible = false;
-                    Ebutton2.Visible = false;
-                    Ebutton3.Visible = false;
-                    Ebutton4.Visible = false;
-                    LblText.Visible = true;
-                    LblContinue.Visible = true;
+                    if (bluecod || success)
+                    {
+                        DisplayType = "Bluecod";
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        FishyPopUp.Invalidate();
+                    }
                 }
-            }
-            if (displaytype == "ESummer")
-            {
-                if (bluetang || success)
+                if (DisplayType == "ESummer")
                 {
-                    displaytype = "Bluetang";
-                    Ebutton1.Visible = false;
-                    Ebutton2.Visible = false;
-                    Ebutton3.Visible = false;
-                    Ebutton4.Visible = false;
-                    LblText.Visible = true;
-                    LblContinue.Visible = true;
+                    if (bluetang || success)
+                    {
+                        DisplayType = "Bluetang";
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        FishyPopUp.Invalidate();
+                    }
                 }
-            }
-            if (displaytype == "EAutumn")
-            {
-                if (catfish || success)
+                if (DisplayType == "EAutumn")
                 {
-                    displaytype = "Catfish";
-                    Ebutton1.Visible = false;
-                    Ebutton2.Visible = false;
-                    Ebutton3.Visible = false;
-                    Ebutton4.Visible = false;
-                    LblText.Visible = true;
-                    LblContinue.Visible = true;
+                    if (catfish || success)
+                    {
+                        DisplayType = "Catfish";
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        FishyPopUp.Invalidate();
+                    }
                 }
-            }
-            if (displaytype == "EWinter")
-            {
-                if (pufferfish || success)
+                if (DisplayType == "EWinter")
                 {
-                    displaytype = "Pufferfish";
-                    Ebutton1.Visible = false;
-                    Ebutton2.Visible = false;
-                    Ebutton3.Visible = false;
-                    Ebutton4.Visible = false;
-                    LblText.Visible = true;
-                    LblContinue.Visible = true;
+                    if (pufferfish || success)
+                    {
+                        DisplayType = "Pufferfish";
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        FishyPopUp.Invalidate();
+                    }
                 }
             }
         }
-
         private void GeneralClick(object sender, EventArgs e)
         {
             if (FishyPopUp.Visible == true)
             {
                 FishyPopUp.Visible = false;
                 TmrFish.Enabled = true;
-                displaytype = null;
+                DisplayType = null;
                 LblNew.Visible = false;
                 TmrWait.Enabled = false;
                 TmrWait.Enabled = true;
                 LblText.Visible = true;
                 LblInfo.Visible = false;
-                Ebutton1.Visible = false;
-                Ebutton2.Visible = false;
-                Ebutton3.Visible = false;
-                Ebutton4.Visible = false;
+                EButton1.Visible = false;
+                EButton2.Visible = false;
+                EButton3.Visible = false;
+                EButton4.Visible = false;
                 LblText.Text = "";
                 LblContinue.Visible = true;
+                EncyclopediaBtn.TabStop = false;
+                InfoBtn.TabStop = false;
                 time = false;
-                checkSeason();
+                CheckSeason();
             }
             
         }
         public void CheckBait()
         {
-            if (bait == 0)
+            if (Bait == 0)
             {
-                displaytype = "failure";
+                DisplayType = "Failure";
                 FishyPopUp.Visible = true;
             }
         }
-        public void checkSeason()
+        public void CheckSeason() //does the same thing for each season
         {
-            if (redcod && bluecod && gurnard && snapper && spring)
+            if (redcod && bluecod && gurnard && snapper && spring) //if it is currently spring and all fish have been caught
             {
-                displaytype = "Summer";
+                DisplayType = "Summer"; //show the player that it is summer
                 FishyPopUp.Visible = true;
-                spring = false;
-                summer = true;
-                Seasontitle = Properties.Resources.Summer;
-                TmrCatch.Interval = 2500;
+                spring = false; //change season
+                summer = true;  //change season
+                Seasontitle = Properties.Resources.Summer; //display summer image
+                TmrCatch.Interval = 2500; //make fish harder to catch
             }
             if (rockfish && bluetang && squid && yellowtang && summer)
             {
-                displaytype = "Autumn";
+                DisplayType = "Autumn";
                 FishyPopUp.Visible = true;
                 summer = false;
                 autumn = true;
@@ -196,7 +380,7 @@ namespace Fishy_Business
             }
             if (clownfish && catfish && pinksalmon && ringtailunicornfish && autumn)
             {
-                displaytype = "Winter";
+                DisplayType = "Winter";
                 FishyPopUp.Visible = true;
                 autumn = false;
                 winter = true;
@@ -206,11 +390,12 @@ namespace Fishy_Business
             }
             if (kingfish && pufferfish && eel && jellyfish && winter)
             {
-                displaytype = "Success";
+                DisplayType = "Success";
                 FishyPopUp.Visible = true;
+                Seasontitle = Properties.Resources.Spring;
                 winter = false;
                 success = true;
-                spring = true;
+                spring = true; //set all fish types back to false to be able to progress through the seasons again
                 redcod = false;
                 bluecod = false;
                 snapper = false;
@@ -229,163 +414,159 @@ namespace Fishy_Business
                 jellyfish = false;
             }
         }
-
         public void FishyPopUp_Paint(object sender, PaintEventArgs e)
         {
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, FishyPopUp, new object[] { true });
 
-            Graphics g2 = e.Graphics;
-
-            displayfishRec = new Rectangle(60, 60, 100, 100);
-
-            
-            if (displaytype == "Snapper")
+            Graphics g2 = e.Graphics; //declare new graphics object
+            DisplayFishRec = new Rectangle(60, 60, 100, 100);
+            if (DisplayType == "Snapper")
             {
                 if (snapper == false) { LblNew.Visible = true; }
-                LblText.Text = "You caught a snapper!" + Environment.NewLine + "ajsdngfoasbgndlansdgfknasgfklndafglknadfsglknalgfkndgnfldsfkngklsdnfglksdnfgklsdnfgklndfsg" + Environment.NewLine + "ajsdngfoasbgndlansdgfknasgfklndafglknadfsglknalgfkndgnfldsfkngklsdnfglksdnfgklsdnfgklndfsg";
-                displayfish = Properties.Resources.Snapper; 
-                g2.DrawImage(displayfish, displayfishRec);
+                LblText.Text = "You caught a snapper!";
+                DisplayFish = Properties.Resources.Snapper; 
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 snapper = true;
             }
-            if (displaytype == "Redcod")
+            if (DisplayType == "Redcod")
             {
                 if (redcod == false) { LblNew.Visible = true; }
-                LblText.Text = "You caught a red cod!" + Environment.NewLine + "ajsdngfoasbgndlansdgfknasgfklndafglknadfsglknalgfkndgnfldsfkngklsdnfglksdnfgklsdnfgklndfsg" + Environment.NewLine + "ajsdngfoasbgndlansdgfknasgfklndafglknadfsglknalgfkndgnfldsfkngklsdnfglksdnfgklsdnfgklndfsg" + Environment.NewLine + "ajsdngfoasbgndlansdgfknasgfklndafglknadfsglknalgfkndgnfldsfkngklsdnfglksdnfgklsdnfgklndfsg";
-                displayfish = Properties.Resources.Red_cod;
-                g2.DrawImage(displayfish, displayfishRec);
+                LblText.Text = "You caught a red cod!";
+                DisplayFish = Properties.Resources.Red_cod;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 redcod = true;
             }
-            if (displaytype == "Bluecod")
+            if (DisplayType == "Bluecod")
             {
                 if (bluecod == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a blue cod!";
-                displayfish = Properties.Resources.Blue_cod;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.Blue_cod;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 bluecod = true;
             }
-            if (displaytype == "Gurnard")
+            if (DisplayType == "Gurnard")
             {
                 if (gurnard == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a gurnard!";
-                displayfish = Properties.Resources.Gurnard;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.Gurnard;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 gurnard = true;
             }
-            if (displaytype == "Summer")
+            if (DisplayType == "Summer")
             {
-                LblText.Text = "It is now summer!" + Environment.NewLine + " You are now a novice baiter!" + Environment.NewLine+ "" + Environment.NewLine + "New fish are now available, but they are more aware of your presence. They will be faster and you will have less time to catch them.";
+                LblText.Text = "It is now summer!" + Environment.NewLine + " You are now a novice baiter!" + Environment.NewLine+ "" + Environment.NewLine + "New fish are now available, but they are more aware" + Environment.NewLine + "of your presence. They will be faster and you will have" + Environment.NewLine + "less time to catch them.";
             }
-            if (displaytype == "Rockfish")
+            if (DisplayType == "Rockfish")
             {
                 if (rockfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a rockfish!";
-                displayfish = Properties.Resources.Rockfish;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.Rockfish;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 rockfish = true;
             }
-            if (displaytype == "Bluetang")
+            if (DisplayType == "Bluetang")
             {
                 if (bluetang == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a blue tang!";
-                displayfish = Properties.Resources.Blue_tang;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.Blue_tang;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 bluetang = true;
             }
-            if (displaytype == "Squid")
+            if (DisplayType == "Squid")
             {
                 if (squid == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a squid!";
-                displayfish = Properties.Resources.Squid;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.Squid;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 squid = true;
             }
-            if (displaytype == "Yellowtang")
+            if (DisplayType == "Yellowtang")
             {
                 if (yellowtang == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a yellow tang!";
-                displayfish = Properties.Resources.Yellow_Tang;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.Yellow_Tang;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 yellowtang = true;
             }
-            if (displaytype == "Autumn")
+            if (DisplayType == "Autumn")
             {
-                LblText.Text = "It is now Autumn!" + Environment.NewLine + " You are now a professional baiter!" + Environment.NewLine + "" + Environment.NewLine + "New fish are now available, but they are more aware of your presence. They will be faster and you will have less time to catch them.";
+                LblText.Text = "It is now Autumn!" + Environment.NewLine + " You are now a amateur baiter!" + Environment.NewLine + "" + Environment.NewLine + "New fish are now available, but they are more aware" + Environment.NewLine + "of your presence. They will be faster and you will have" + Environment.NewLine + "less time to catch them.";
 
             }
-            if (displaytype == "Clownfish")
+            if (DisplayType == "Clownfish")
             {
                 if (clownfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a clownfish!";
-                displayfish = Properties.Resources.Clownfish;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.Clownfish;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 clownfish = true;
             }
-            if (displaytype == "Catfish")
+            if (DisplayType == "Catfish")
             {
                 if (catfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a catfish!";
-                displayfish = Properties.Resources.Catfish;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.Catfish;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 catfish = true;
             }
-            if (displaytype == "Pinksalmon")
+            if (DisplayType == "Pinksalmon")
             {
                 if (pinksalmon == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a pink salmon!";
-                displayfish = Properties.Resources.Pink_Salmon;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.Pink_Salmon;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 pinksalmon = true;
             }
-            if (displaytype == "Ringtailunicornfish")
+            if (DisplayType == "Ringtailunicornfish")
             {
                 if (ringtailunicornfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a ringtail unicornfish!";
-                displayfish = Properties.Resources.Ringtail_Unicornfish;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.Ringtail_Unicornfish;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 ringtailunicornfish = true;
             }
-            if (displaytype == "Winter")
+            if (DisplayType == "Winter")
             {
-                LblText.Text = "It is now Winter!" + Environment.NewLine + " You are now a master baiter!" + Environment.NewLine + "" + Environment.NewLine + "New fish are now available, but they are more aware of your presence. They will be faster and you will have less time to catch them.";
+                LblText.Text = "It is now Winter!" + Environment.NewLine + " You are now a professional baiter!" + Environment.NewLine + "" + Environment.NewLine + "New fish are now available, but they are more aware" + Environment.NewLine + "of your presence. They will be faster and you will have" + Environment.NewLine + "less time to catch them.";
             }
-            if (displaytype == "Kingfish")
+            if (DisplayType == "Kingfish")
             {
                 if (kingfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a kingfish!";
-                displayfish = Properties.Resources.Kingfish;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.Kingfish;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 kingfish = true;
             }
-            if (displaytype == "Pufferfish")
+            if (DisplayType == "Pufferfish")
             {
                 if (pufferfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a pufferfish!";
-                displayfish = Properties.Resources.Pufferfish;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.Pufferfish;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 pufferfish = true;
             }
-            if (displaytype == "Eel")
+            if (DisplayType == "Eel")
             {
                 if (eel == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught an eel!";
-                displayfish = Properties.Resources.Eel;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.Eel;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 eel = true;
             }
-            if (displaytype == "Jellyfish")
+            if (DisplayType == "Jellyfish")
             {
                 if (jellyfish == false) { LblNew.Visible = true; }
                 LblText.Text = "You caught a jellyfish!";
-                displayfish = Properties.Resources.jellyfish;
-                g2.DrawImage(displayfish, displayfishRec);
+                DisplayFish = Properties.Resources.jellyfish;
+                g2.DrawImage(DisplayFish, DisplayFishRec);
                 jellyfish = true;
             }
-            if (displaytype == "Success")
+            if (DisplayType == "Success")
             {
-                LblText.Text = "You have caught all fish!";
+                LblText.Text = "You have caught all fish!" + Environment.NewLine + " You are now a master baiter!";
 
             }
-            if (displaytype == "Information")
+            if (DisplayType == "Information")
             {
                 LblInfo.Visible = true;
                 LblInfo.Text = "Your aim is to become a master fisher and catch every single fish. Each" + Environment.NewLine + 
@@ -397,161 +578,173 @@ namespace Fishy_Business
                     " less time to catch them. When you see a ( ! ), press the" + Environment.NewLine + "space bar to catch the fish." + Environment.NewLine +
                     "" + Environment.NewLine + "You can view all this information again by pressing ( i ).";
             }
-            if (displaytype == "Encyclopedia")
+            if (DisplayType == "Encyclopedia")
             {
-                Ebutton1.Visible = true;
-                Ebutton2.Visible = true;
-                Ebutton3.Visible = true;
-                Ebutton4.Visible = true;
+                EButton1.Visible = true;
+                EButton2.Visible = true;
+                EButton3.Visible = true;
+                EButton4.Visible = true;
                 LblText.Visible = false;
                 LblContinue.Visible = false;
-                Ebutton1.Text = "Spring";
-                Ebutton2.Text = "Summer";
-                Ebutton3.Text = "Autumn";
-                Ebutton4.Text = "Winter";
+                EButton1.Text = "Spring";
+                EButton2.Text = "Summer";
+                EButton3.Text = "Autumn";
+                EButton4.Text = "Winter";
             }
-            if (displaytype == "ESpring")
+            if (DisplayType == "ESpring")
             {
                 if (redcod)
                 {
-                    Ebutton1.Text = "Red Cod";
+                    EButton1.Text = "Red Cod";
                 }
                 else
                 {
-                    Ebutton1.Text = "???";
+                    EButton1.Text = "???";
                 }
                 if (bluecod)
                 {
-                    Ebutton2.Text = "Blue Cod";
+                    EButton2.Text = "Blue Cod";
                 }
                 else
                 {
-                    Ebutton2.Text = "???";
+                    EButton2.Text = "???";
                 }
                 if (snapper)
                 {
-                    Ebutton3.Text = "Snapper";
+                    EButton3.Text = "Snapper";
                 }
                 else
                 {
-                    Ebutton3.Text = "???";
+                    EButton3.Text = "???";
                 }
                 if (gurnard)
                 {
-                    Ebutton4.Text = " Gurnard";
+                    EButton4.Text = " Gurnard";
                 }
                 else
                 {
-                    Ebutton4.Text = "???";
+                    EButton4.Text = "???";
                 }
             }
-            if (displaytype == "ESummer")
+            if (DisplayType == "ESummer")
             {
                 if (rockfish)
                 {
-                    Ebutton1.Text = "Rockfish";
+                    EButton1.Text = "Rockfish";
                 }
                 else
                 {
-                    Ebutton1.Text = "???";
+                    EButton1.Text = "???";
                 }
                 if (bluetang)
                 {
-                    Ebutton2.Text = "Blue Tang";
+                    EButton2.Text = "Blue Tang";
                 }
                 else
                 {
-                    Ebutton2.Text = "???";
+                    EButton2.Text = "???";
                 }
                 if (squid)
                 {
-                    Ebutton3.Text = "Squid";
+                    EButton3.Text = "Squid";
                 }
                 else
                 {
-                    Ebutton3.Text = "???";
+                    EButton3.Text = "???";
                 }
                 if (yellowtang)
                 {
-                    Ebutton4.Text = "Yellow Tang";
+                    EButton4.Text = "Yellow Tang";
                 }
                 else
                 {
-                    Ebutton4.Text = "???";
+                    EButton4.Text = "???";
                 }
             }
-            if (displaytype == "EAutumn")
+            if (DisplayType == "EAutumn")
             {
                 if (clownfish)
                 {
-                    Ebutton1.Text = "Clownfish";
+                    EButton1.Text = "Clownfish";
                 }
                 else
                 {
-                    Ebutton1.Text = "???";
+                    EButton1.Text = "???";
                 }
                 if (catfish)
                 {
-                    Ebutton2.Text = "Catfish";
+                    EButton2.Text = "Catfish";
                 }
                 else
                 {
-                    Ebutton2.Text = "???";
+                    EButton2.Text = "???";
                 }
                 if (pinksalmon)
                 {
-                    Ebutton3.Text = "Pink Salmon";
+                    EButton3.Text = "Pink Salmon";
                 }
                 else
                 {
-                    Ebutton3.Text = "???";
+                    EButton3.Text = "???";
                 }
                 if (ringtailunicornfish)
                 {
-                    Ebutton4.Text = "Ringtail unicornfish";
+                    EButton4.Text = "Ringtail unicornfish";
                 }
                 else
                 {
-                    Ebutton4.Text = "???";
+                    EButton4.Text = "???";
                 }
             }
-            if (displaytype == "EWinter")
+            if (DisplayType == "EWinter")
             {
                 if (rockfish)
                 {
-                    Ebutton1.Text = "Rockfish";
+                    EButton1.Text = "Kingfish";
                 }
                 else
                 {
-                    Ebutton1.Text = "???";
+                    EButton1.Text = "???";
                 }
                 if (bluetang)
                 {
-                    Ebutton2.Text = "Blue Tang";
+                    EButton2.Text = "Pufferfish";
                 }
                 else
                 {
-                    Ebutton2.Text = "???";
+                    EButton2.Text = "???";
                 }
                 if (squid)
                 {
-                    Ebutton3.Text = "Squid";
+                    EButton3.Text = "Eel";
                 }
                 else
                 {
-                    Ebutton3.Text = "???";
+                    EButton3.Text = "???";
                 }
                 if (yellowtang)
                 {
-                    Ebutton4.Text = "Yellow Tang";
+                    EButton4.Text = "Jellyfish";
                 }
                 else
                 {
-                    Ebutton4.Text = "???";
+                    EButton4.Text = "???";
                 }
             }
+            if (DisplayType == "Failure")
+            {
+                //get your label text
+                //string PlayerName = LblText.Text;
+                //Your new text here
+                //string NewText = "You have run out of bait ";
+                //Concatenate your new sting with label text
+                //LblText.Text = string.Format("{0} {1}", NewText, PlayerName);
+                LblText.Text = "You have run out of bait..." + Environment.NewLine + "Better luck next time!" + Environment.NewLine + "";
+                FishyPanel.Enabled = false;
+                FishyPopUp.Enabled = false;
+                LblContinue.Visible = false;
+            }
         }
-
         public FishyFrm()
         {
             InitializeComponent();
@@ -565,10 +758,10 @@ namespace Fishy_Business
                 fish[i] = new Fish(x);
             }
         }
-
         public void FishyPanel_Paint(object sender, PaintEventArgs e)
         {
-            if (FishyPopUp.Visible == true)
+            //stopping everything on FishyPanel when PopUp is visible
+            if (FishyPopUp.Visible == true) 
             {
                 TmrFish.Enabled = false;
                 Catch = false;
@@ -580,17 +773,13 @@ namespace Fishy_Business
                 TmrFish.Enabled = true;
                 FishyPopUp.Enabled = false;
             }
-
             Graphics g3 = e.Graphics; //graphics object
-
             //title and season title images
-            titleRec = new Rectangle(300, 50, 350, 100);
+            TitleRec = new Rectangle(300, 50, 350, 100);
             Title = Properties.Resources.Title;
-            g3.DrawImage(Title, titleRec);
-            seasonRec = new Rectangle(450, 150, 200, 50);
-            g3.DrawImage(Seasontitle, seasonRec);
-            //information buttons
-
+            g3.DrawImage(Title, TitleRec);
+            SeasonRec = new Rectangle(450, 150, 200, 50);
+            g3.DrawImage(Seasontitle, SeasonRec);
 
             Random random = new Random();
             //get the graphics used to paint on the panel control
@@ -602,7 +791,7 @@ namespace Fishy_Business
             foreach (Fish f in fish)
             {
                 //creating the circle for the fish
-                int centre_x = 200, centre_y = 300;
+                int centre_x = 160, centre_y = 265;
                 if (spring)
                 {
                     phi += 0.01; //changes speed of the fish
@@ -623,34 +812,27 @@ namespace Fishy_Business
                 spacing = spacing + 2;
             }
 
-            rodRec = new Rectangle(200, 240, 5, 5);
-            e.Graphics.FillRectangle(Brushes.Black, rodRec);
+            RodRec = new Rectangle(100, 240, 5, 5);
 
-            foreach (Fish f_this in fish) // this stops the fish and ensures that the fish can be caught. 
+            foreach (Fish f_this in fish) // for each fish in the array
             {
-                if (TmrWait.Enabled == false)
+                if (TmrWait.Enabled == false) // if the timer is up
                 { 
-                    if (rodRec.IntersectsWith(f_this.fishRec))
+                    if (RodRec.IntersectsWith(f_this.FishRec)) //if the fish is on the rod
                     {
-
                         if (random.Next(0, 100) < 100) // random chance for the fish to be "caught" currently set at 100% for testing
                         {
-                            TmrFish.Enabled = false;
+                            AlertRec = new Rectangle(120, 200, 50, 50);
+                            Alert = Properties.Resources.Alert;
+                            g3.DrawImage(Alert, AlertRec);
                             TmrCatch.Enabled = true;
-                            Catch = true;
+                            TmrFish.Enabled = false;
+                            Catch = true; 
                         }
                     }
                 }
             }
-            if (Catch)
-                {
-                alertRec = new Rectangle(240, 200, 50, 50);
-                Alert = Properties.Resources.Alert;
-                g3.DrawImage(Alert, alertRec);
-            }
-            
         }
-
         public void FishyFrm_Load(object sender, EventArgs e)
         {
             spring = true;
@@ -659,19 +841,19 @@ namespace Fishy_Business
             winter = false;
             success = false;
             Seasontitle = Properties.Resources.Spring;
-            bait = 20;
-            LblBait.Text = bait.ToString();
-
+            Bait = 10;
+            LblBait.Text = Bait.ToString();
         }
-
         public void TmrCatch_Tick(object sender, EventArgs e)
         {
             TmrFish.Enabled = true;
             Catch = false;
             TmrCatch.Enabled = false;
             TmrWait.Enabled = true;
+            Bait -= 1;
+            LblBait.Text = Bait.ToString();
+            CheckBait();
         }
-
         public void TmrWait_Tick(object sender, EventArgs e)
         {
             if (FishyPopUp.Visible == false)
@@ -679,57 +861,59 @@ namespace Fishy_Business
                 TmrWait.Enabled = false;
             }
         }
-
         public void FishyFrm_KeyDown(object sender, KeyEventArgs e)
         {
              Random random = new Random();
             if (e.KeyData == Keys.I)
             {
-                displaytype = "Information";
+                DisplayType = "Information";
                 FishyPopUp.Visible = true;
             }
             if (e.KeyData == Keys.E)
             {
-                displaytype = "Encyclopedia"; 
                 FishyPopUp.Visible = true;
+                DisplayType = "Encyclopedia"; 
+                
             }
             if (FishyPopUp.Visible == false)
             { 
                     if (e.KeyData == Keys.Space)
                     {
-                    bait -= 1; //take away one bait
-                    LblBait.Text = bait.ToString();
+                    Bait -= 1; //take away one bait
+                    LblBait.Text = Bait.ToString();
+                    CheckBait();
 
                     if (Catch)
                     {
                         Catch = false;
                         TmrWait.Enabled = true;
-                        bait += 2;
+                        Bait += 2;
+                        LblBait.Text = Bait.ToString();
                         if (spring)
                         {
                             int rand = random.Next(1, 5);
                             if (rand == 1)
                             {
                                 FishyPopUp.Visible = true;
-                                displaytype = "Redcod";
+                                DisplayType = "Redcod";
 
                             }
                             if (rand == 2)
                             {
                                 FishyPopUp.Visible = true;
-                                displaytype = "Bluecod"; ;
+                                DisplayType = "Bluecod"; ;
 
                             }
                             if (rand == 3)
                             {
                                 FishyPopUp.Visible = true;
-                                displaytype = "Snapper";
+                                DisplayType = "Snapper";
 
                             }
                             if (rand == 4)
                             {
                                 FishyPopUp.Visible = true;
-                                displaytype = "Gurnard";
+                                DisplayType = "Gurnard";
                             }
                         }
 
@@ -740,25 +924,25 @@ namespace Fishy_Business
                             {
                                 rockfish = true;
                                 FishyPopUp.Visible = true;
-                                displaytype = "Rockfish";
+                                DisplayType = "Rockfish";
                             }
                             if (rand == 2)
                             {
                                 bluetang = true;
                                 FishyPopUp.Visible = true;
-                                displaytype = "Bluetang";
+                                DisplayType = "Bluetang";
                             }
                             if (rand == 3)
                             {
                                 squid = true;
                                 FishyPopUp.Visible = true;
-                                displaytype = "Squid";
+                                DisplayType = "Squid";
                             }
                             if (rand == 4)
                             {
                                 yellowtang = true;
                                 FishyPopUp.Visible = true;
-                                displaytype = "Yellowtang";
+                                DisplayType = "Yellowtang";
                             }
                         }
 
@@ -769,25 +953,25 @@ namespace Fishy_Business
                             {
                                 clownfish = true;
                                 FishyPopUp.Visible = true;
-                                displaytype = "Clownfish";
+                                DisplayType = "Clownfish";
                             }
                             if (rand == 2)
                             {
                                 catfish = true;
                                 FishyPopUp.Visible = true;
-                                displaytype = "Catfish";
+                                DisplayType = "Catfish";
                             }
                             if (rand == 3)
                             {
                                 pinksalmon = true;
                                 FishyPopUp.Visible = true;
-                                displaytype = "Pinksalmon";
+                                DisplayType = "Pinksalmon";
                             }
                             if (rand == 4)
                             {
                                 ringtailunicornfish = true;
                                 FishyPopUp.Visible = true;
-                                displaytype = "Ringtailunicornfish";
+                                DisplayType = "Ringtailunicornfish";
                             }
                         }
 
@@ -798,25 +982,25 @@ namespace Fishy_Business
                             {
                                 kingfish = true;
                                 FishyPopUp.Visible = true;
-                                displaytype = "Kingfish";
+                                DisplayType = "Kingfish";
                             }
                             if (rand == 2)
                             {
                                 pufferfish = true;
                                 FishyPopUp.Visible = true;
-                                displaytype = "Pufferfish";
+                                DisplayType = "Pufferfish";
                             }
                             if (rand == 3)
                             {
                                 eel = true;
                                 FishyPopUp.Visible = true;
-                                displaytype = "Eel";
+                                DisplayType = "Eel";
                             }
                             if (rand == 4)
                             {
                                 jellyfish = true;
                                 FishyPopUp.Visible = true;
-                                displaytype = "Jellyfish";
+                                DisplayType = "Jellyfish";
                             }
                         }
                     }
@@ -824,17 +1008,9 @@ namespace Fishy_Business
             }
             
         }
-
         public void TmrFish_Tick(object sender, EventArgs e)
         {
             FishyPanel.Invalidate();//makes the paint event fire to redraw the panel
-        }
-        private void FishyFrm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (Application.OpenForms.Count == 0)
-            {
-                Application.Exit();
-            }
         }
     }
 }

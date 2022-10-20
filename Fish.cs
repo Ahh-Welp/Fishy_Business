@@ -11,30 +11,31 @@ namespace Fishy_Business
     {
         // declare fields to use in the class
         private int x, y, width, height;//variables for the rectangle
-        private Image fishImage;//variable for the fish's image
+        private Image FishImage;//variable for the fish's image
 
-        public Rectangle fishRec;//variable for a rectangle to place our image in
+        public Rectangle FishRec;//variable for a rectangle to place our image in
+
         //Create a constructor (initialises the values of the fields)
         //
         public Fish(int spacing)
         {
             x = spacing;
-            y = 360;
+            y = 340;
             width = 40;
             height = 40;
             //fishImage contains the mysteryfish.png image
-            fishImage = Properties.Resources.mysteryfish;
-            fishRec = new Rectangle(x, y, width, height);
+            FishImage = Properties.Resources.mysteryfish;
+            FishRec = new Rectangle(x, y, width, height);
         }
 
         // Methods for the Fish class
         public void DrawFish(Graphics g, double x1, double y1)
         {
-            // creating new locations for the fish to be drawn
-            x = (int)x1;
-            y = (int)y1;
-            fishRec.Location = new Point(x, y);
-            g.DrawImage(fishImage, fishRec);
+                // creating new locations for the fish to be drawn
+                x = (int)x1;
+                y = (int)y1;
+                FishRec.Location = new Point(x, y);
+                g.DrawImage(FishImage, FishRec);
         }
     }
 }

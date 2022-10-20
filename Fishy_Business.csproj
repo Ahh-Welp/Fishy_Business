@@ -112,7 +112,9 @@
     <None Include="Resources\Winter.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Blue cod.jpg" />
+    <None Include="Resources\Blue cod.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Blue tang.jpg" />
@@ -161,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Alert.png" />
+    <None Include="Resources\Background.png" />
+    <None Include="Resources\Background1.png" />
+    <None Include="Resources\Blue_cod.jpg" />
     <Content Include="Resources\Info.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

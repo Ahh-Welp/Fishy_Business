@@ -34,13 +34,6 @@ namespace Fishy_Business
             g.DrawImage(Title, titleRec);
 
         }
-        private void FrmStart_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (Application.OpenForms.Count == 0)
-            {
-                Application.Exit();
-            }
-        }
 
         private void TmrChange_Tick(object sender, EventArgs e)
         {
