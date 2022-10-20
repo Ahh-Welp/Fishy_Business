@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
-using System.Reflection.Emit;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Fishy_Business
@@ -31,115 +22,113 @@ namespace Fishy_Business
         private Rectangle RodRec; //variable for a rectangle to place our image in
         private Rectangle TitleRec; //rectangle for title image
         public Rectangle SeasonRec; //rectangle for season title image
-        public Rectangle AlertRec;
-        public Rectangle InfoRec;
-        public Image Title;
-        public Image Seasontitle;
-        public Image Info;
-        public Image Alert;
-        public bool stop, success, Catch, time, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, eel, jellyfish;
+        public Rectangle AlertRec; //rectangle for (!)
+        public Rectangle InfoRec;//rectangle for (i)
+        public Image Title; //title image
+        public Image Seasontitle; //season image
+        public Image Info; //info button image
+        public Image Alert;//(!) image
+        bool success, Catch, time, spring, summer, autumn, winter, redcod, bluecod, snapper, gurnard, rockfish, bluetang, squid, yellowtang, clownfish, catfish, pinksalmon, ringtailunicornfish, kingfish, pufferfish, eel, jellyfish;
 
         private void InfoBtn_Click(object sender, EventArgs e)
         {
-            DisplayType = "Information";
+            DisplayType = "Information"; //shows instructions
             FishyPopUp.Visible = true;
-            this.Focus();
         }
         private void EButton1_Click(object sender, EventArgs e)
         {
-                if (DisplayType == "Encyclopedia")
-                {
-                    DisplayType = "ESpring";
-                    BtnTmr.Enabled = true;
-                }
-                if (time)
-                {
-                    if (DisplayType == "ESpring")
-                    {
-                        if (redcod)
-                        {
-                            EButton1.Visible = false;
-                            EButton2.Visible = false;
-                            EButton3.Visible = false;
-                            EButton4.Visible = false;
-                            LblText.Visible = true;
-                            LblContinue.Visible = true;                           
-                            DisplayType = "Redcod";
-                            FishyPopUp.Invalidate();
-                        }
-                    }
-                    if (DisplayType == "ESummer")
-                    {
-                        if (rockfish)
-                        {
-                            DisplayType = "Rockfish";
-                            EButton1.Visible = false;
-                            EButton2.Visible = false;
-                            EButton3.Visible = false;
-                            EButton4.Visible = false;
-                            LblText.Visible = true;
-                            LblContinue.Visible = true;
-                            FishyPopUp.Invalidate();
-                    }
-                }
-                    if (DisplayType == "EAutumn")
-                    {
-                        if (clownfish)
-                        {
-                            DisplayType = "Clownfish";
-                            EButton1.Visible = false;
-                            EButton2.Visible = false;
-                            EButton3.Visible = false;
-                            EButton4.Visible = false;
-                            LblText.Visible = true;
-                            LblContinue.Visible = true;
-                            FishyPopUp.Invalidate();
-                    }
-                }
-                    if (DisplayType == "EWinter")
-                    {
-                        if (kingfish)
-                        {
-                            DisplayType = "Kingfish";
-                            EButton1.Visible = false;
-                            EButton2.Visible = false;
-                            EButton3.Visible = false;
-                            EButton4.Visible = false;
-                            LblText.Visible = true;
-                            LblContinue.Visible = true;
-                            FishyPopUp.Invalidate();
-
-                        }
-                    }
-                }
-        }
-        private void EncyclopediaBtn_Click(object sender, EventArgs e)
-        {
-            DisplayType = "Encyclopedia";
-            FishyPopUp.Visible = true;
-            this.Focus();
-        }
-        public void Ebutton4_Click(object sender, EventArgs e)
-        {
-            if (DisplayType == "Encyclopedia")
+            if (DisplayType == "Encyclopedia") //if button is clicked then change to spring display
             {
-                DisplayType = "EWinter";
+                DisplayType = "ESpring";
                 BtnTmr.Enabled = true;
             }
-            if (time)
+            if (time) //time from BtnTmr to stop clicking twice
             {
                 if (DisplayType == "ESpring")
                 {
-                    if (gurnard)
+                    if (redcod)
                     {
+                        EButton1.Visible = false;
+                        EButton2.Visible = false; //removes buttons
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        DisplayType = "Redcod"; //shows red cod display
+                        FishyPopUp.Invalidate(); //invalidates panel to redraw
+                    }                            //same below
+                }
+                if (DisplayType == "ESummer")
+                {
+                    if (rockfish)
+                    {
+                        DisplayType = "Rockfish";
                         EButton1.Visible = false;
                         EButton2.Visible = false;
                         EButton3.Visible = false;
                         EButton4.Visible = false;
                         LblText.Visible = true;
                         LblContinue.Visible = true;
-                        DisplayType = "Gurnard";
                         FishyPopUp.Invalidate();
+                    }
+                }
+                if (DisplayType == "EAutumn")
+                {
+                    if (clownfish)
+                    {
+                        DisplayType = "Clownfish";
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        FishyPopUp.Invalidate();
+                    }
+                }
+                if (DisplayType == "EWinter")
+                {
+                    if (kingfish)
+                    {
+                        DisplayType = "Kingfish";
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false;
+                        EButton4.Visible = false;
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        FishyPopUp.Invalidate();
+
+                    }
+                }
+            }
+        }
+        private void EncyclopediaBtn_Click(object sender, EventArgs e)
+        {
+            DisplayType = "Encyclopedia"; //Changes display
+            FishyPopUp.Visible = true;
+        }
+        public void Ebutton4_Click(object sender, EventArgs e)
+        {
+            if (DisplayType == "Encyclopedia") //changes display
+            {
+                DisplayType = "EWinter";
+                BtnTmr.Enabled = true;
+            }
+            if (time) //timer to stop double clicking
+            {
+                if (DisplayType == "ESpring") //changes displaytype
+                {
+                    if (gurnard)
+                    {
+                        EButton1.Visible = false;
+                        EButton2.Visible = false;
+                        EButton3.Visible = false; //removes buttons
+                        EButton4.Visible = false; //and redraws panel with fish
+                        LblText.Visible = true;
+                        LblContinue.Visible = true;
+                        DisplayType = "Gurnard";
+                        FishyPopUp.Invalidate(); //same below
                     }
                 }
                 if (DisplayType == "ESummer")
@@ -188,7 +177,7 @@ namespace Fishy_Business
         }
         public void Ebutton3_Click(object sender, EventArgs e)
         {
-            if (DisplayType == "Encyclopedia")
+            if (DisplayType == "Encyclopedia") //same as other buttons
             {
                 DisplayType = "EAutumn";
                 BtnTmr.Enabled = true;
@@ -255,12 +244,12 @@ namespace Fishy_Business
         }
         public void BtnTmr_Tick(object sender, EventArgs e)
         {
-            time = true;
+            time = true; //time bool to stop double clicking
             BtnTmr.Enabled = false;
         }
         public void Ebutton2_Click(object sender, EventArgs e)
         {
-            if (DisplayType == "Encyclopedia")
+            if (DisplayType == "Encyclopedia") //same as other buttons
             {
                 DisplayType = "ESummer";
                 BtnTmr.Enabled = true;
@@ -327,18 +316,18 @@ namespace Fishy_Business
         }
         private void GeneralClick(object sender, EventArgs e)
         {
-            if (FishyPopUp.Visible == true)
+            if (FishyPopUp.Visible == true) //if panel is visible and clicked on
             {
-                FishyPopUp.Visible = false;
-                TmrFish.Enabled = true;
-                DisplayType = null;
+                FishyPopUp.Visible = false; //remove panel
+                TmrFish.Enabled = true; //start game again
+                DisplayType = null; //string type = null
                 LblNew.Visible = false;
-                TmrWait.Enabled = false;
+                TmrWait.Enabled = false; //reset timer
                 TmrWait.Enabled = true;
                 LblText.Visible = true;
                 LblInfo.Visible = false;
                 EButton1.Visible = false;
-                EButton2.Visible = false;
+                EButton2.Visible = false; //clearing labels and buttons
                 EButton3.Visible = false;
                 EButton4.Visible = false;
                 LblText.Text = "";
@@ -346,16 +335,16 @@ namespace Fishy_Business
                 EncyclopediaBtn.TabStop = false;
                 InfoBtn.TabStop = false;
                 time = false;
-                CheckSeason();
+                CheckSeason(); //check season
             }
-            
+
         }
         public void CheckBait()
         {
             if (Bait == 0)
             {
                 DisplayType = "Failure";
-                FishyPopUp.Visible = true;
+                FishyPopUp.Visible = true; //checking bait to "lose" the game
             }
         }
         public void CheckSeason() //does the same thing for each season
@@ -394,7 +383,7 @@ namespace Fishy_Business
                 FishyPopUp.Visible = true;
                 Seasontitle = Properties.Resources.Spring;
                 winter = false;
-                success = true;
+                success = true; //success allows fish to still be seen in encyclopedia
                 spring = true; //set all fish types back to false to be able to progress through the seasons again
                 redcod = false;
                 bluecod = false;
@@ -420,14 +409,15 @@ namespace Fishy_Business
 
             Graphics g2 = e.Graphics; //declare new graphics object
             DisplayFishRec = new Rectangle(60, 60, 100, 100);
-            if (DisplayType == "Snapper")
+            //all fish are the same
+            if (DisplayType == "Snapper") //if snapper is shown
             {
-                if (snapper == false) { LblNew.Visible = true; }
-                LblText.Text = "You caught a snapper!";
-                DisplayFish = Properties.Resources.Snapper; 
-                g2.DrawImage(DisplayFish, DisplayFishRec);
-                snapper = true;
-            }
+                if (snapper == false) { LblNew.Visible = true; } //if it has not been caught then display the correct label
+                LblText.Text = "You caught a snapper!"; //change text
+                DisplayFish = Properties.Resources.Snapper; //set image to snapper
+                g2.DrawImage(DisplayFish, DisplayFishRec); //draw image
+                snapper = true; //snapper has been caught
+            } //same as rest
             if (DisplayType == "Redcod")
             {
                 if (redcod == false) { LblNew.Visible = true; }
@@ -454,7 +444,8 @@ namespace Fishy_Business
             }
             if (DisplayType == "Summer")
             {
-                LblText.Text = "It is now summer!" + Environment.NewLine + " You are now a novice baiter!" + Environment.NewLine+ "" + Environment.NewLine + "New fish are now available, but they are more aware" + Environment.NewLine + "of your presence. They will be faster and you will have" + Environment.NewLine + "less time to catch them.";
+                //summer text
+                LblText.Text = "It is now summer!" + Environment.NewLine + " You are now a novice baiter!" + Environment.NewLine + "" + Environment.NewLine + "New fish are now available, but they are more aware" + Environment.NewLine + "of your presence. They will be faster and you will have" + Environment.NewLine + "less time to catch them.";
             }
             if (DisplayType == "Rockfish")
             {
@@ -490,6 +481,7 @@ namespace Fishy_Business
             }
             if (DisplayType == "Autumn")
             {
+                //autumn text
                 LblText.Text = "It is now Autumn!" + Environment.NewLine + " You are now a amateur baiter!" + Environment.NewLine + "" + Environment.NewLine + "New fish are now available, but they are more aware" + Environment.NewLine + "of your presence. They will be faster and you will have" + Environment.NewLine + "less time to catch them.";
 
             }
@@ -563,13 +555,15 @@ namespace Fishy_Business
             }
             if (DisplayType == "Success")
             {
+                //shown when game finishes
                 LblText.Text = "You have caught all fish!" + Environment.NewLine + " You are now a master baiter!";
 
             }
             if (DisplayType == "Information")
             {
+                //display instructions again
                 LblInfo.Visible = true;
-                LblInfo.Text = "Your aim is to become a master fisher and catch every single fish. Each" + Environment.NewLine + 
+                LblInfo.Text = "Your aim is to become a master fisher and catch every single fish. Each" + Environment.NewLine +
                     "season has four different fish to catch, the season will change after you have" + Environment.NewLine + "caught all available fish. " +
                     "Make sure to not run out of bait though! Duplicate fish" + Environment.NewLine + "can be used to create more bait."
                     + Environment.NewLine + "" + Environment.NewLine + "You can view all fish you have caught in your encyclopedia by pressing E"
@@ -580,19 +574,20 @@ namespace Fishy_Business
             }
             if (DisplayType == "Encyclopedia")
             {
-                EButton1.Visible = true;
+                EButton1.Visible = true; //show buttons
                 EButton2.Visible = true;
                 EButton3.Visible = true;
                 EButton4.Visible = true;
                 LblText.Visible = false;
                 LblContinue.Visible = false;
                 EButton1.Text = "Spring";
-                EButton2.Text = "Summer";
+                EButton2.Text = "Summer"; //change text
                 EButton3.Text = "Autumn";
                 EButton4.Text = "Winter";
             }
             if (DisplayType == "ESpring")
             {
+                //this is all just if the fish is caught then it is shown, if not then text is ???
                 if (redcod)
                 {
                     EButton1.Text = "Red Cod";
@@ -733,15 +728,9 @@ namespace Fishy_Business
             }
             if (DisplayType == "Failure")
             {
-                //get your label text
-                //string PlayerName = LblText.Text;
-                //Your new text here
-                //string NewText = "You have run out of bait ";
-                //Concatenate your new sting with label text
-                //LblText.Text = string.Format("{0} {1}", NewText, PlayerName);
                 LblText.Text = "You have run out of bait..." + Environment.NewLine + "Better luck next time!" + Environment.NewLine + "";
                 FishyPanel.Enabled = false;
-                FishyPopUp.Enabled = false;
+                FishyPopUp.Enabled = false; //disable panels so that the player cannot continue
                 LblContinue.Visible = false;
             }
         }
@@ -751,7 +740,7 @@ namespace Fishy_Business
 
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, FishyPanel, new object[] { true });
 
-            NumberOfFish = fish.Count();
+            NumberOfFish = fish.Count(); //when form is loaded set starting positions of fish
             for (int i = 0; i < NumberOfFish; i++)
             {
                 int x = 10 + (i * 75);
@@ -761,7 +750,7 @@ namespace Fishy_Business
         public void FishyPanel_Paint(object sender, PaintEventArgs e)
         {
             //stopping everything on FishyPanel when PopUp is visible
-            if (FishyPopUp.Visible == true) 
+            if (FishyPopUp.Visible == true)
             {
                 TmrFish.Enabled = false;
                 Catch = false;
@@ -780,14 +769,10 @@ namespace Fishy_Business
             g3.DrawImage(Title, TitleRec);
             SeasonRec = new Rectangle(450, 150, 200, 50);
             g3.DrawImage(Seasontitle, SeasonRec);
-
             Random random = new Random();
             //get the graphics used to paint on the panel control
             g = e.Graphics;
-            //call the Fish class's DrawFish method to draw the image fish1 
-
             double spacing = 0;
-
             foreach (Fish f in fish)
             {
                 //creating the circle for the fish
@@ -798,36 +783,34 @@ namespace Fishy_Business
                 }
                 if (summer)
                 {
-                    phi += 0.015; //changes speed of the fish
+                    phi += 0.012; //changes speed of the fish
                 }
                 if (autumn)
                 {
-                    phi += 0.03; //changes speed of the fish
+                    phi += 0.02; //changes speed of the fish
                 }
                 if (winter)
                 {
-                    phi += 0.05; //changes speed of the fish
+                    phi += 0.03; //changes speed of the fish
                 }
-                f.DrawFish(g, x = radius * Math.Cos(phi + spacing) + centre_x, y = radius * Math.Sin(phi + spacing) + centre_y);
+                f.DrawFish(g, x = radius * Math.Cos(phi + spacing) + centre_x, y = radius * Math.Sin(phi + spacing) + centre_y); //call the Fish class's DrawFish method to draw the image
                 spacing = spacing + 2;
             }
-
-            RodRec = new Rectangle(100, 240, 5, 5);
-
+            RodRec = new Rectangle(100, 240, 5, 5); //new rectangle for fish to be caught on
             foreach (Fish f_this in fish) // for each fish in the array
             {
                 if (TmrWait.Enabled == false) // if the timer is up
-                { 
+                {
                     if (RodRec.IntersectsWith(f_this.FishRec)) //if the fish is on the rod
                     {
-                        if (random.Next(0, 100) < 100) // random chance for the fish to be "caught" currently set at 100% for testing
+                        if (random.Next(0, 100) < 70) // random chance for the fish to be "caught"g
                         {
-                            AlertRec = new Rectangle(120, 200, 50, 50);
+                            AlertRec = new Rectangle(120, 200, 50, 50); //draw (!) in new rectangle
                             Alert = Properties.Resources.Alert;
                             g3.DrawImage(Alert, AlertRec);
                             TmrCatch.Enabled = true;
                             TmrFish.Enabled = false;
-                            Catch = true; 
+                            Catch = true;
                         }
                     }
                 }
@@ -837,89 +820,88 @@ namespace Fishy_Business
         {
             spring = true;
             summer = false;
-            autumn = false;
+            autumn = false; //set correct season
             winter = false;
             success = false;
-            Seasontitle = Properties.Resources.Spring;
-            Bait = 10;
-            LblBait.Text = Bait.ToString();
+            Seasontitle = Properties.Resources.Spring; //show season title
+            Bait = 10; // set bait to 10 when starting
+            LblBait.Text = Bait.ToString(); //display the amount of bait
         }
         public void TmrCatch_Tick(object sender, EventArgs e)
         {
-            TmrFish.Enabled = true;
-            Catch = false;
+            TmrFish.Enabled = true; //fish moves again
+            Catch = false; //can no longer trigger catch event
             TmrCatch.Enabled = false;
-            TmrWait.Enabled = true;
-            Bait -= 1;
-            LblBait.Text = Bait.ToString();
-            CheckBait();
+            TmrWait.Enabled = true; //stops player from catching 2 in a row
+            Bait -= 1; //remove one bait
+            LblBait.Text = Bait.ToString(); //display new bait number
+            CheckBait(); //check if bait = 0
         }
         public void TmrWait_Tick(object sender, EventArgs e)
         {
             if (FishyPopUp.Visible == false)
             {
-                TmrWait.Enabled = false;
+                TmrWait.Enabled = false; //player can catch fish again
             }
         }
         public void FishyFrm_KeyDown(object sender, KeyEventArgs e)
         {
-             Random random = new Random();
-            if (e.KeyData == Keys.I)
+            Random random = new Random(); //new random
+            if (e.KeyData == Keys.I) //if I is pressed then show instructions
             {
                 DisplayType = "Information";
                 FishyPopUp.Visible = true;
             }
-            if (e.KeyData == Keys.E)
+            if (e.KeyData == Keys.E) //if e is pressed show encyclopedia
             {
                 FishyPopUp.Visible = true;
-                DisplayType = "Encyclopedia"; 
-                
+                DisplayType = "Encyclopedia";
+
             }
             if (FishyPopUp.Visible == false)
-            { 
-                    if (e.KeyData == Keys.Space)
-                    {
+            {
+                if (e.KeyData == Keys.Space) //if space is pressed
+                { //and catch is not true
                     Bait -= 1; //take away one bait
-                    LblBait.Text = Bait.ToString();
-                    CheckBait();
+                    LblBait.Text = Bait.ToString(); //show bait number
+                    CheckBait(); //check if bait is 0
 
-                    if (Catch)
+                    if (Catch) //if fish is able to be caught
                     {
-                        Catch = false;
+                        Catch = false; //no longer able to be caught
                         TmrWait.Enabled = true;
-                        Bait += 2;
-                        LblBait.Text = Bait.ToString();
-                        if (spring)
+                        Bait += 2; //add bait
+                        LblBait.Text = Bait.ToString(); //display bait number
+                        int rand = random.Next(1, 5); //set random interger
+                        if (spring) //same for other seasons
                         {
-                            int rand = random.Next(1, 5);
-                            if (rand == 1)
+
+                            if (rand == 1) //if random = 1
                             {
-                                FishyPopUp.Visible = true;
+                                FishyPopUp.Visible = true; //fish caught is red cod
                                 DisplayType = "Redcod";
 
                             }
-                            if (rand == 2)
+                            if (rand == 2) //if random = 2
                             {
-                                FishyPopUp.Visible = true;
+                                FishyPopUp.Visible = true; //bluecod is caught
                                 DisplayType = "Bluecod"; ;
 
                             }
-                            if (rand == 3)
+                            if (rand == 3) //if random = 3
                             {
                                 FishyPopUp.Visible = true;
-                                DisplayType = "Snapper";
+                                DisplayType = "Snapper"; //snapper is caught
 
                             }
-                            if (rand == 4)
+                            if (rand == 4)// if random = 4
                             {
-                                FishyPopUp.Visible = true;
+                                FishyPopUp.Visible = true; //gurnard is caught
                                 DisplayType = "Gurnard";
                             }
                         }
-
                         if (summer)
                         {
-                            int rand = random.Next(1, 5);
                             if (rand == 1)
                             {
                                 rockfish = true;
@@ -945,10 +927,8 @@ namespace Fishy_Business
                                 DisplayType = "Yellowtang";
                             }
                         }
-
                         if (autumn)
                         {
-                            int rand = random.Next(1, 5);
                             if (rand == 1)
                             {
                                 clownfish = true;
@@ -974,10 +954,8 @@ namespace Fishy_Business
                                 DisplayType = "Ringtailunicornfish";
                             }
                         }
-
                         if (winter)
                         {
-                            int rand = random.Next(1, 5);
                             if (rand == 1)
                             {
                                 kingfish = true;
@@ -1006,7 +984,7 @@ namespace Fishy_Business
                     }
                 }
             }
-            
+
         }
         public void TmrFish_Tick(object sender, EventArgs e)
         {
